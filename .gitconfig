@@ -1,0 +1,75 @@
+[user]
+	name = Martin Frausing
+	email = mfk@novozymes.com
+
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	root = !pwd -P
+    commitdiff = !git show --color --pretty=format:%b 
+	stashed = stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
+    lasttag = !git tag -l 'release-*' --sort=-taggerdate | head -n 1
+    colasttag = !git co `git lasttag`
+    lg = log --decorate
+
+[core]
+	excludesfile = ~/.gitignore
+    editor = /usr/bin/vim
+    #editor = giteditor.pl
+	pager = less -F
+
+[help]
+    autocorrect = 30
+
+#[color]
+#	ui = auto
+#[color "diff"]
+#	meta = yellow bold
+#	frag = magenta bold
+#	old = red bold
+#	new = green bold
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[push]
+	default = current
+    followTags = true
+    verbose = 
+
+[merge]
+	stat = true
+
+[rebase]
+    stat = true
+    autoStash = true
+
+[url "git+ssh://sal.nzcorp.net/z/sal/git/"]
+    insteadOf = sal:
+
+[url "https://github.com"]
+        insteadOf = git://github.com
+
+#[rerere]
+#	enabled = true
+[log]
+	abbrevCommit = true
+    follow = true
+
+[diff]
+	mnemonicprefix = true
+
+[stash]
+	showPatch = true
+
+[pull]
+	rebase = true
