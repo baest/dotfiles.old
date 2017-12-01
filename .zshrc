@@ -1,6 +1,18 @@
-PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin export PATH
+#
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
 
-#/opt/local/bin:/opt/local/sbin:/opt/local/lib/postgresql91/bin/:
+
+# Source Prezto.
+#if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+#  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+#fi
+
+# Customize to your needs...
+PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin export PATH
 
 limit coredumpsize 0
 autoload zkbd zmv zcalc promptinit help
@@ -12,9 +24,11 @@ autoload zsh/mathfunc
 #
 #stty status ^T
 
-#source ~/.zshrc-oh-my-zsh
+source $HOME/.zshrc-oh-my-zsh
 
-. ~mfk/.common/.zshrc
+source "$HOME/.common/.zshrc"
+
+[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
@@ -51,19 +65,16 @@ growl() { echo -e $'\e]9;'${1}'\007' ; return  ; }
 #LC_ALL=en_US.ISO8859-1; export LC_ALL
 #LANG=en_GB.ISO8859-1; export LANG
 #LANG=en_GB.UTF-8; export LANG
-LANG=en_US.UTF-8; export LANG
-#LANG=en_GB ; export LANG
-#LC_MESSAGES=en_GB.UTF-8; export LC_MESSAGES
-LC_MESSAGES=en_US.UTF-8; export LC_MESSAGES
-EDITOR=/usr/bin/vim; export EDITOR
-
-export PERL5OP="MCarp=verbose"
-export LESS="-XsR"
+export LANG=en_GB.UTF-8
+export LC_TIME=en_GB.UTF-8
+export LC_PAPER=en_GB.UTF-8
+export LC_MESSAGES=en_GB.UTF-8
+export LC_CTYPE=en_GB.UTF-8
+export LC_ALL=en_GB.UTF-8
 
 alias dc=cd
 alias zudo="sudo zsh"
 alias top="top -c"
-
 
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.shrc; export ENV
@@ -85,12 +96,14 @@ ENV=$HOME/.shrc; export ENV
 	
 #colours for ls in solarised urxvt
 export TERM=xterm-256color
-eval `dircolors ~/ressources/ls-colors-solarized/dircolors`
+eval `dircolors ~/ressources/dircolors-solarized/dircolors.ansi-light`
 
 if [ ! -z "$PS1" ]; then
     if [[ `hostname` == 'drossel' ]]; then 
         export PROMPT='%*:%n %~%B%(?..(%?%))%b%#'
-        eval `keychain -q --agents ssh --eval id_rsa personal_key_rsa` && echo 1 > /tmp/keychain_ran
+        #(>&2 echo $LC_PAPER)
+        eval `keychain -q --agents ssh --eval id_rsa personal_key_rsa`
+#        eval `keychain -q --agents ssh --eval id_rsa personal_key_rsa` && echo 1 > /tmp/keychain_ran
 #        RUN_KEYCHAIN=''
 #        ssh-add -l >/dev/null 2>&1 || RUN_KEYCHAIN=1 # check keys are there
 #        echo $SSH_AGENT_PID
@@ -156,9 +169,6 @@ autoload -U zen
 
 #[ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
 
-unalias g
-unalias gr
-
 #tig
 alias tigs="tig status"
 alias tigb="tig blame"
@@ -169,7 +179,51 @@ if [[ `hostname` == 'drossel' ]]; then
     eval "$(fasd --init auto)"
 fi
 
+#. ~mfk/install_src/zipline/zl.sh
+
+function zl () {
+    cd `zipline`
+}
+
+if [[ -z "$REAL_GIT" ]]; then
+    export REAL_GIT=`which git`
+
+    alias git=g
+fi
+
+g() {
+    typeset -r git_alias="git-$1"
+    if `which "$git_alias" >/dev/null 2>&1`; then
+        shift
+        "$git_alias" "$@"
+    elif [[ "$1" =~ [A-Z] ]]; then
+        # Translate "X" to "-x" to enable aliases with uppercase letters. 
+        translated_alias=$(echo "$1" | sed -e 's/[A-Z]/-\l\0/g')
+        shift
+        "$REAL_GIT" "$translated_alias" "$@"
+    else
+        "$REAL_GIT" "$@"
+    fi
+} 
+compdef _git g=git
+compdef _git git=git
+
+#opts:
+setopt null_glob
+
 export PATH=$HOME/bin/first:$PATH
 
 #export DISPLAY=localhost:0
 export DISPLAY=:0
+unset PGDATABASE
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Inserted by NSQ at 29/03/2017. See #2351/sysadm
+for i in /etc/novoenv.d/*.sh; do
+    if [ -r "$i" ]; then
+        . $i
+    fi
+done
+
+alias cfg='/usr/bin/git --git-dir=/z/home/mfk/.cfg/ --work-tree=/z/home/mfk'
