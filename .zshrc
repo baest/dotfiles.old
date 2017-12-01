@@ -74,11 +74,6 @@ ENV=$HOME/.shrc; export ENV
 #fi
 
 
-#source $HOME/.zsh/git-prompt/zshrc.sh
-#source $HOME/.zsh/git-flow-completion/git-flow-completion.zsh
-#source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# an example prompt
-
 #export PS1="%*:%n@%~%{${fg[red]}%}%B%(?..(%?%))%b-$(git_super_status)%#";
 	
 #colours for ls in solarised urxvt
@@ -146,8 +141,8 @@ fi
 
 fpath=($HOME/.zsh/functions $fpath)
 
-fpath=($fpath ~mfk/.zen/zsh/scripts /Users/baest/.zen/zsh/zle)
-autoload -U zen
+#fpath=($fpath ~mfk/.zen/zsh/scripts /Users/baest/.zen/zsh/zle)
+#autoload -U zen
 
 #  [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 #. /usr/share/autojump/autojump.sh
@@ -234,9 +229,13 @@ export ENHANCD_HOOK_AFTER_CD=ll
 #zplug "zsh-users/zsh-autosuggestions"
 # Syntax highlighting for commands, load last
 zplug "zsh-users/zsh-syntax-highlighting", from:github, defer:3
+zplug "zsh-users/zsh-completions"
+zplug "rupa/z", use:"*.sh"
+zplug "zsh-users/zaw"
+#zplug "tarruda/zsh-autosuggestions", use:"dist/autosuggestions.zsh"
 
-#zplug load
-zplug load --verbose
+zplug load
+#zplug load --verbose
 
 
 alias cfg='/usr/bin/git --git-dir=/z/home/mfk/.cfg/ --work-tree=/z/home/mfk'
