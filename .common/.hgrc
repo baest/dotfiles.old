@@ -1,0 +1,22 @@
+[hooks]
+changegroup = hg log -r $HG_NODE:tip --stat --template ' {desc}:\n\n'
+#changegroup = hg diff --stat -r $HG_NODE -r tip
+
+[ui]
+username = Martin Kjeldsen <mk@bluepipe.dk>
+
+[extensions]
+color=
+hgext.record=
+hgext.schemes=
+progress=
+
+[alias]
+llog = log --limit 2
+bm = ci -m "Branch merge"
+sync = pull -u
+lci = commits
+
+[schemes]
+#bhg = ssh://baest@hg.bluepipe.dk//data/hg/
+bhg = ssh://hg.bluepipe.dk//data/hg/
