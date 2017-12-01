@@ -1,0 +1,13 @@
+# ~/.tmuxinator/work.yml
+
+name: pbi0027
+root: /home/mfk/src/pbi0027
+
+windows:
+  - SHELL:
+      - 
+  - db:
+      - vim db/nzdb/update/new-0001.sql
+  - construct:
+      - vim lib/NzDB/DB/Construct/Library.pm lib/NzDB/DB/Construct/Library_component*
+
