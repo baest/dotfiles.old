@@ -1,5 +1,5 @@
 # Customize to your needs...
-PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin export PATH
+export PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:/home/mfk/install_src/rakudo/install/share/perl6/site/bin:
 #
 limit coredumpsize 0
 autoload zkbd zmv zcalc promptinit help
@@ -156,10 +156,10 @@ alias tigs="tig status"
 alias tigb="tig blame"
 
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-if [[ `hostname` == 'drossel' ]]; then 
-    export PATH=~/.rakudobrew/bin:$PATH
-#    eval "$(fasd --init auto)"
-fi
+#if [[ `hostname` == 'drossel' ]]; then 
+#    export PATH=~/.rakudobrew/bin:$PATH
+##    eval "$(fasd --init auto)"
+#fi
 
 #. ~mfk/install_src/zipline/zl.sh
 
@@ -212,30 +212,8 @@ export ZPLUG_CACHE_DIR=~/.cache/zplug
 
 source ~/.zplug/init.zsh
 
-# Make sure to use double quotes
-zplug "zsh-users/zsh-history-substring-search"
-#zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf, use:"*${(L)$(uname -s)}*amd64*"
-#zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
-zplug "junegunn/fzf", as:command, use:"bin/fzf-tmux"
-zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf"
-zplug "junegunn/fzf", use:"shell/key-bindings.zsh"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-#export FZF_DEFAULT_OPTS="--exact --color bg+:10,hl:5,hl+:5,pointer:7,spinner:2,info:3"
-#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
-zplug "b4b4r07/enhancd", use:init.sh
-export ENHANCD_FILTER=fzf
-export ENHANCD_HOOK_AFTER_CD=ll
-#zplug "zsh-users/zsh-autosuggestions"
-# Syntax highlighting for commands, load last
-zplug "zsh-users/zsh-syntax-highlighting", from:github, defer:3
-zplug "zsh-users/zsh-completions"
-zplug "rupa/z", use:"*.sh"
-zplug "zsh-users/zaw"
-#zplug "tarruda/zsh-autosuggestions", use:"dist/autosuggestions.zsh"
+source ~/.zplug/plugins.zsh
 
-zplug load
-#zplug load --verbose
 
 
 alias cfg='/usr/bin/git --git-dir=/z/home/mfk/.cfg/ --work-tree=/z/home/mfk'
