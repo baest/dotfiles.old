@@ -13,23 +13,17 @@
     lasttag = !git tag -l 'release-*' --sort=-taggerdate | head -n 1
     colasttag = !git co `git lasttag`
     lg = log --decorate
+    patch = !git --no-pager diff --no-color
 
 [core]
 	excludesfile = ~/.gitignore
     editor = /usr/bin/vim
     #editor = giteditor.pl
-	pager = less -F
+	pager = diff-so-fancy | less --tabs=4 -RFX
+    #pager = diff-so-fancy | less --tabs=4 --pattern '^(Date|added|deleted|modified): ' -RFX
 
 [help]
     autocorrect = 30
-
-#[color]
-#	ui = auto
-#[color "diff"]
-#	meta = yellow bold
-#	frag = magenta bold
-#	old = red bold
-#	new = green bold
 
 [color "branch"]
 	current = yellow reverse
@@ -73,3 +67,22 @@
 
 [pull]
 	rebase = true
+
+[color]
+	ui = true
+
+#[color "diff-highlight"]
+#	oldNormal = red bold
+#	oldHighlight = red bold 52
+#	newNormal = green bold
+#	newHighlight = green bold 22
+
+[color "diff"]
+	meta = 227
+	frag = magenta bold
+	commit = 227 bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[diff-so-fancy]
+	markEmptyLines = false
