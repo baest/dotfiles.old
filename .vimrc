@@ -54,6 +54,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'lifepillar/pgsql.vim'
 Plug 'godlygeek/tabular' " for tabularizing on =, do :Tabularize /=
 Plug 'matze/vim-move'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'blueyed/vim-diminactive'
 
 " disabled, might conflict with vim-slash, but if all is imported, vim gets kinda bugga
 " haven't found how to enable trackperlvars.vim support only
@@ -87,6 +89,8 @@ function! g:committia_hooks.edit_open(info)
     imap <buffer><PageUp> <Plug>(committia-scroll-diff-up-half)
 
 endfunction
+
+set autoread
 
 let g:sql_type_default = 'pgsql'
 

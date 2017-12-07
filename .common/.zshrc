@@ -26,7 +26,7 @@ autoload -Uz compinit
 if [ -f ~/.zcompdump ]; then
 	compinit -d ~/.zcompdump
 else
-	compinit 
+	compinit
 fi
 # End of lines added by compinstall
 

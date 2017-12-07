@@ -21,9 +21,13 @@ zplug "zsh-users/zaw"
 zplug "so-fancy/diff-so-fancy", as:command, use:diff-so-fancy
 #zplug "facebook/PathPicker" as:command from:gh-r
 zplug "okbob/pspg", as:command, hook-build:"./configure && make", use:pspg
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug "jonas/tig", as:command, hook-build:"make", use:src/tig
+zplug "zsh-users/zsh", use:Completion/Debian/Command/
 #zplug "tarruda/zsh-autosuggestions", use:"dist/autosuggestions.zsh"
+zplug "tarruda/zsh-autosuggestions", use:"zsh-autosuggestions.zsh"
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
 
 zplug load
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=125"
 #zplug load --verbose
-#

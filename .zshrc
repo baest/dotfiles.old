@@ -2,9 +2,11 @@
 export PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:/home/mfk/install_src/rakudo/install/share/perl6/site/bin:
 #
 limit coredumpsize 0
-autoload zkbd zmv zcalc promptinit help
+autoload zkbd zmv zcalc help
 #zargs#zmv 
 autoload zsh/mathfunc
+autoload -U select-word-style
+select-word-style bash
 #NOBEEP
 #[[ ! -f ~/.zkbd/$TERM ]] && zkbd
 #source ~/.zkbd/$TERM
@@ -139,8 +141,6 @@ fi
 
 #export PROMPT='%*:%n@%~$(git_super_status)%{${fg[red]}%}%B%(?..(%?%))%b%#'
 
-fpath=($HOME/.zsh/functions $fpath)
-
 #fpath=($fpath ~mfk/.zen/zsh/scripts /Users/baest/.zen/zsh/zle)
 #autoload -U zen
 
@@ -151,28 +151,27 @@ fpath=($HOME/.zsh/functions $fpath)
 
 #[ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
 
-#tig
+# tig
 alias tigs="tig status"
 alias tigb="tig blame"
+# cfg
+alias cfg='/usr/bin/git --git-dir=/z/home/mfk/.cfg/ --work-tree=/z/home/mfk'
 
-#export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 #if [[ `hostname` == 'drossel' ]]; then 
-#    export PATH=~/.rakudobrew/bin:$PATH
 ##    eval "$(fasd --init auto)"
 #fi
 
-#. ~mfk/install_src/zipline/zl.sh
-
-function zl () {
-    cd `zipline`
-}
+# Git supports aliases defined in .gitconfig, but you cannot override Git
+# builtins (e.g. "git log") by putting an executable "git-log" somewhere in the
+# PATH. Also, git aliases are case-insensitive, but case can be useful to create
+# a negated command (gf = grep --files-with-matches; gF = grep
+# --files-without-match). As a workaround, translate "X" to "-x".
 
 if [[ -z "$REAL_GIT" ]]; then
     export REAL_GIT=`which git`
 
     alias git=g
 fi
-
 g() {
     typeset -r git_alias="git-$1"
     if `which "$git_alias" >/dev/null 2>&1`; then
@@ -186,20 +185,16 @@ g() {
     else
         "$REAL_GIT" "$@"
     fi
-} 
+}
 compdef _git g=git
 compdef _git git=git
 
 #opts:
 setopt null_glob
 
-export PATH=$HOME/bin/first:$PATH
-
 #export DISPLAY=localhost:0
 export DISPLAY=:0
 unset PGDATABASE
-
-#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Inserted by NSQ at 29/03/2017. See #2351/sysadm
 for i in /etc/novoenv.d/*.sh; do
@@ -214,6 +209,7 @@ source ~/.zplug/init.zsh
 
 source ~/.zplug/plugins.zsh
 
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=bold"
 
-
-alias cfg='/usr/bin/git --git-dir=/z/home/mfk/.cfg/ --work-tree=/z/home/mfk'
+# for some reason somethims $ZPLUG_BIN doesn't get added
+export PATH=$HOME/bin/first:$ZPLUG_BIN:$PATH
