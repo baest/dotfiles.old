@@ -32,6 +32,7 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
 Plug 'jgdavey/tslime.vim'
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'benmills/vimux'
 Plug 'edkolev/tmuxline.vim'
 Plug 'wellle/tmux-complete.vim'
@@ -56,12 +57,21 @@ Plug 'godlygeek/tabular' " for tabularizing on =, do :Tabularize /=
 Plug 'matze/vim-move'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'blueyed/vim-diminactive'
+Plug 'w0rp/ale'
+Plug 'elmcast/elm-vim'
 
 " disabled, might conflict with vim-slash, but if all is imported, vim gets kinda bugga
 " haven't found how to enable trackperlvars.vim support only
 "Plug 'thoughtstream/Damian-Conway-s-Vim-Setup'
 
 call plug#end()
+
+let g:ale_linters = {'perl': ['perl'], 'javascript': ['eslint', 'prettier']}
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
+let g:airline_theme='solarized'
+let g:ale_javascript_eslint_use_global = 1
+let g:ale_javascript_eslint_executable = 'eslint_d'
 
 nnoremap <Tab> :CtrlPBuffer<CR>
 
