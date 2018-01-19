@@ -209,10 +209,12 @@ source ~/.zplug/init.zsh
 
 source ~/.zplug/plugins.zsh
 
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=bold"
-
 #autoload -Uz add-zsh-hook
 #add-zsh-hook precmd  histdb-update-outcome
+
+#NPM
+PATH="$PATH:${HOME}/.npm-packages/bin"
+#TODO NPM manpath? see https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
 
 # for some reason somethims $ZPLUG_BIN doesn't get added
 export PATH=$HOME/bin/first:$ZPLUG_BIN:$PATH

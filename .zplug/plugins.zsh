@@ -30,5 +30,5 @@ zplug "tarruda/zsh-autosuggestions", use:"zsh-autosuggestions.zsh"
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 zplug load
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=125"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan"
 #zplug load --verbose
