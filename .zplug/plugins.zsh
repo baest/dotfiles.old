@@ -12,6 +12,8 @@ export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 zplug "b4b4r07/enhancd", use:init.sh
 export ENHANCD_FILTER=fzf
 export ENHANCD_HOOK_AFTER_CD=ll
+export ENHANCD_DISABLE_DOT=1
+export ENHANCD_DISABLE_HYPHEN=1
 #zplug "zsh-users/zsh-autosuggestions"
 # Syntax highlighting for commands, load last
 zplug "zsh-users/zsh-syntax-highlighting", from:github, defer:3
