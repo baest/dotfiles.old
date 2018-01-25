@@ -73,6 +73,9 @@ let g:airline_theme='solarized'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
 
+let g:EditorConfig_verbose = 1
+let g:EditorConfig_max_line_indicator = "exceeding"
+
 nnoremap <Tab> :CtrlPBuffer<CR>
 
 "matze/vim-move (alt isn't mapped in terminal, is send as <Esc>
