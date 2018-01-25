@@ -64,6 +64,7 @@ export LC_ALL=en_GB.UTF-8
 alias dc=cd
 alias zudo="sudo zsh"
 alias top="top -c"
+alias tree="tree -a"
 
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.shrc; export ENV
