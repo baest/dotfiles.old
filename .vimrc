@@ -72,6 +72,8 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='solarized'
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
+" let ale be usable (not too goddam slow)
+let g:ale_echo_delay = 500
 
 let g:EditorConfig_verbose = 1
 let g:EditorConfig_max_line_indicator = "exceeding"
