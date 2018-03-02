@@ -15,6 +15,7 @@
     lg = log --decorate
     patch = !git --no-pager diff --no-color
     hardclear = !git reset --hard && git clean -fd
+    anw = !git diff -U0 -w --no-color -- \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero "#" 
 
 [core]
 	excludesfile = ~/.gitignore
