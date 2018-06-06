@@ -79,6 +79,15 @@ let g:ale_echo_delay = 500
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme='solarized'
 
+"plugin config:
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_preset = 'tmux'
+let g:ackprg = 'ag --vimgrep'
+
 "let g:EditorConfig_verbose = 1
 let g:EditorConfig_max_line_indicator = "exceeding"
 
@@ -154,15 +163,6 @@ let g:sql_type_default = 'pgsql'
 "        call dein#install()
 "    endif
 "endif
-
-"plugin config:
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = 'tmux'
-let g:ackprg = 'ag --vimgrep'
 
 "DetectIndent
 ":autocmd BufReadPost * :DetectIndent 
@@ -265,7 +265,7 @@ ab kanallerne kanalerne
 ab kanaller kanaler
 ab kanalle kanale
 ab P use DDP; p
-ab CLUCK use Carp; Carp::cluck 'xxx';
+ab C use Carp; Carp::cluck
 "autocmd! bufwritepost .vimrc source ~/.vimrc
 
 let g:perl_path_to = {}
@@ -420,7 +420,8 @@ noremap <leader>v o<cr>:set paste<cr>:.!pbpaste<cr>:set nopaste<cr>
 "disable ex mode
 :map Q <Nop>
 
-set shell=/bin/zsh
+"set shell=/bin/zsh
+"set shellcmdflag=
 
 source ~/.vimrc.local
 
