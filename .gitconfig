@@ -9,13 +9,14 @@
 	co = checkout
 	root = !pwd -P
     commitdiff = !git show --color --pretty=format:%b 
-	stashed = stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
+	stashed = stash list --stat --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
     lasttag = !git tag -l 'release-*' --sort=-taggerdate | head -n 1
     colasttag = !git co `git lasttag`
     lg = log --decorate
     patch = !git --no-pager diff --no-color
     hardclear = !git reset --hard && git clean -fd
     anw = !git diff -U0 -w --no-color -- \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero "#" 
+    rollback = !git reset --soft HEAD~ && git status
 
 [core]
 	excludesfile = ~/.gitignore
@@ -81,9 +82,9 @@
 #	newHighlight = green bold 22
 
 [color "diff"]
-	meta = 227
+	meta = yellow
 	frag = magenta bold
-	commit = 227 bold
+	commit = yellow bold
 	old = red bold
 	new = green bold
 	whitespace = red reverse
