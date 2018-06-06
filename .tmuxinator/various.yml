@@ -35,7 +35,7 @@ windows:
       layout: even-horizontal
       panes:
         - work-time:
-            - cd ~/devel/Work-time2
+            - cd ~/devel/Work-time
             - perl6 server.p6
         - db:
-            - sqlite3 ~/devel/Work-time2/worktime.db
+            - sqlite3 ~/devel/Work-time/worktime.db
