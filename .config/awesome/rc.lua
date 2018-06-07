@@ -109,7 +109,9 @@ myawesomemenu = {
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon }
                                   , { "Debian", debian.menu.Debian_menu.Debian }
                                   , { "open terminal", terminal }
-                                  , {"Pidgin","/usr/bin/pidgin","/usr/share/pixmaps/pidgin-menu.xpm" }
+                                  , { "Pidgin","/usr/bin/pidgin","/usr/share/pixmaps/pidgin-menu.xpm" }
+                                  , { "Firefox","/usr/bin/firefox","" }
+                                  , { "Chromium","/usr/bin/chromium-browser","" }
 --                                  , { "abekat", mfk_menu.menu.Mfk_menu.quickhits }
                                   }
                         })
