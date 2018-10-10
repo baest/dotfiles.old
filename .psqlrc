@@ -1,16 +1,18 @@
---\set HISTFILE ~/.psql_history/ :DBNAME
 \pset null '(NULL)'
 --\pset pager off
 \pset pager on
-\setenv PAGER 'pspg -bX --no-mouse'
+\pset linestyle unicode
+\pset border 3
+\setenv PAGER 'pspg -bX --no-mouse --no-bars'
 \timing
 --\set VERBOSITY verbose
 --\set PROMPT1 '%n %[%033[33;1m%]%x%[%033[0m%]%[%033[1m%]%/%[%033[0m%]%R%# '
 \set HISTSIZE 50000
 \set HISTCONTROL ignoreboth
-\set HISTFILE ~/.psql_history/:HOST
+--\set HISTFILE ~/.psql_history/:HOST
+\set HISTFILE ~/.psql_history/ :DBNAME
 -- with hostname
 \set PROMPT1 '%x %R[%m] %# '
-set search_path TO construct, public
+--set search_path TO construct, public
 \set COMP_KEYWORD_CASE upper
 \set ON_ERROR_ROLLBACK interactive
