@@ -24,6 +24,7 @@ let mapleader=","
 set t_ti= t_te=
 
 let g:ackprg = 'ag --vimgrep'
+:set directory=$HOME/.vim/swap//
 
 call plug#begin('~/.vim/plugged')
 
@@ -69,7 +70,10 @@ call plug#end()
 
 let g:sudo_no_gui=1
 
-let g:ale_linters = {'perl': ['perl'], 'javascript': ['eslint', 'prettier']}
+let g:ale_linters = {'perl': ['perl'], 'javascript': ['eslint', 'prettier'], 'python': ['flake8', 'pylint3', 'mypy']}
+let g:ale_python_mypy_options = '--ignore-missing-imports'
+let g:ale_fixers = {'python': ['autopep8', 'yapf', 'isort']}
+let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
@@ -220,6 +224,7 @@ autocmd BufNewFile,BufRead *.p6 setf perl6
 "autocmd BufNewFile,BufRead *.html.ep setf html
 au BufRead,BufNewFile *.html.epl set filetype=html.epl
 au BufRead,BufNewFile *.html.ep  set filetype=html.epl
+au FileType make setlocal noexpandtab
 
 "autocmd FileType sql :map <C-k> #n"ayw/;<CR>:noh<CR>o<Esc>!!perl ~/src/d2fe/tools/get_type_id.pl <C-R>a<CR><Esc>
 
