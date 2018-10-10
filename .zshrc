@@ -1,3 +1,7 @@
+#zmodload zsh/zprof
+
+[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+
 # Customize to your needs...
 export PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:/home/mfk/install_src/rakudo/install/share/perl6/site/bin:$HOME/.cargo/bin
 #
@@ -16,8 +20,6 @@ select-word-style bash
 #source $HOME/.zshrc-oh-my-zsh
 
 source "$HOME/.common/.zshrc"
-
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
@@ -61,10 +63,33 @@ export LC_MESSAGES=en_GB.UTF-8
 export LC_CTYPE=en_GB.UTF-8
 export LC_ALL=en_GB.UTF-8
 
+export EMAIL=mfk@novozymes.com
+export NAME="Martin Frausing"
+export DEBFULLNAME="Martin Frausing (MFK)"
+
 alias dc=cd
 alias zudo="sudo zsh"
 alias top="top -c"
 alias tree="tree -a"
+alias 1='cd ..'
+alias 2='cd ../..'
+alias 3='cd ../../..'
+
+# docker shit
+alias dlist="echo PS && docker ps -a && echo && echo Volume LS && docker volume ls && echo && echo Images && docker images && echo && echo Network LS && docker network ls"
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+alias dcleancon="docker ps -aq | parallel docker rm -f {}"
+alias dcleanimg="docker images -a -q | parallel docker rmi {}"
+alias dcleannet="docker network ls -q | parallel docker network rm {} 2>&1 | grep -v 'cannot be removed'"
+alias dcleanvol="docker volume ls -q | parallel docker volume rm {}"
+alias dcleanall="dcleancon && dcleanimg && dcleannet && dcleanvol"
+alias dprune="docker image prune --force && docker ps -aq -f status=exited | parallel docker rm {}"
+alias dpruneall="docker system prune --force && docker image prune --all --force"
+alias dlogs="docker logs --details --follow --timestamps"
+alias dcup="docker-compose up"
+alias dcdn="docker-compose down --volumes --remove-orphans"
+
 
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.shrc; export ENV
@@ -112,7 +137,6 @@ if [ ! -z "$PS1" ]; then
 
         alias pbcopy="xclip -selection c"
         alias pbpaste="xclip -selection clipboard -o"
-        #source ~/.rvm/scripts/rvm
 
         # don't set background when in tmux, since it inherits what is was created with
 #        if [ -z "$TMUX" ]; then
@@ -191,7 +215,10 @@ compdef _git g=git
 compdef _git git=git
 
 #opts:
-setopt null_glob
+setopt NULL_GLOB
+setopt EXTENDED_GLOB
+
+setopt GLOBSTARSHORT
 
 #export DISPLAY=localhost:0
 export DISPLAY=:0
@@ -210,6 +237,28 @@ source ~/.zplug/init.zsh
 
 source ~/.zplug/plugins.zsh
 
+if [[ `hostname` == 'drossel' ]]; then
+    export PSQLRC="~/.psqlrc_drossel"
+fi
+
+pg() {
+    NAME=$1; shift
+    case "$NAME" in
+        pc | orne )
+            NAME=prodcopy
+            ;;
+    esac
+    PGSERVICE=$NAME psql "$@"
+}
+
+pgs() {
+    export PGSERVICE=$1
+}
+
+vim() {
+        nvim "$@"
+}
+
 #autoload -Uz add-zsh-hook
 #add-zsh-hook precmd  histdb-update-outcome
 
@@ -217,5 +266,8 @@ source ~/.zplug/plugins.zsh
 PATH="$PATH:${HOME}/.npm-packages/bin"
 #TODO NPM manpath? see https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
 
+fpath=($fpath ~mfk/.zsh_completions)
 # for some reason somethims $ZPLUG_BIN doesn't get added
-export PATH=$HOME/bin/first:$ZPLUG_BIN:$PATH
+export PATH=$HOME/bin/first:$ZPLUG_BIN:$HOME/.perl6/bin:$PATH
+ 
+#zprof
