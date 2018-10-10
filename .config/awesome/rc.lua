@@ -112,6 +112,8 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                   , { "Pidgin","/usr/bin/pidgin","/usr/share/pixmaps/pidgin-menu.xpm" }
                                   , { "Firefox","/usr/bin/firefox","" }
                                   , { "Chromium","/usr/bin/chromium-browser","" }
+                                  , { "Vivaldi","/usr/bin/vivaldi","/opt/vivaldi/product_logo_32.xpm" }
+                                  , { "Chrome","/usr/bin/google-chrome","/opt/google/chrome/product_logo_32.xpm" }
 --                                  , { "abekat", mfk_menu.menu.Mfk_menu.quickhits }
                                   }
                         })
@@ -350,8 +352,8 @@ globalkeys = gears.table.join(
               {description = "restore minimized", group = "client"}),
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"}),
+--    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end,
+--              {description = "run prompt", group = "launcher"}),
 
     awful.key({ modkey }, "x",
               function ()
