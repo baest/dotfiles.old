@@ -4,7 +4,7 @@ bindkey '\eq' push-line-or-edit
 bindkey '^U' backward-kill-line
 
 BLOCKSIZE=K;	export BLOCKSIZE
-EDITOR=vim;   	export EDITOR
+EDITOR=nvim;   	export EDITOR
 PAGER=less;  	export PAGER
 
 alias ls="ls -F --color=auto"
