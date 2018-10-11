@@ -20,6 +20,8 @@
     ar = commit --amend --reuse-message HEAD # amend reuse
 	alias = config --get-regexp ^alias\\.
     cistat = shortlog -s -n --all --no-merges
+    current-branch = rev-parse --abbrev-ref HEAD
+    track = !git branch --set-upstream-to=origin/$(git current-branch)
 
 [core]
 	excludesfile = ~/.gitignore
