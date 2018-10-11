@@ -90,6 +90,8 @@ alias dlogs="docker logs --details --follow --timestamps"
 alias dcup="docker-compose up"
 alias dcdn="docker-compose down --volumes --remove-orphans"
 
+alias nv=nvim
+
 
 # set ENV to a file invoked each time sh is started for interactive use.
 ENV=$HOME/.shrc; export ENV
@@ -253,10 +255,6 @@ pg() {
 
 pgs() {
     export PGSERVICE=$1
-}
-
-vim() {
-        nvim "$@"
 }
 
 #autoload -Uz add-zsh-hook
