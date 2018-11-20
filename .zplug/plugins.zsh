@@ -1,7 +1,7 @@
 # checks if a plugin is installed via zplug
-_is_installed() {
-    zplug list | grep -q "$@"
-}
+#_is_installed() {
+#    zplug list | grep -q "$@"
+#}
 
 # Make sure to use double quotes
 zplug "zsh-users/zsh-history-substring-search"
@@ -39,12 +39,16 @@ fpath=($fpath ~mfk/.zplug/repos/zsh-users/zsh/Completion/Unix/Command)
 zplug "tarruda/zsh-autosuggestions", use:"zsh-autosuggestions.zsh"
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
 zplug "crilleengvall/GitUndo", from:github, as:command, use:git-undo
-zplug "Tarrasch/zsh-autoenv"
 zplug 'BurntSushi/ripgrep', from:gh-r, as:command, rename-to:"rg"
-zplug 'pyenv/pyenv', as:"command", use:"bin/*"
+zplug "harelba/q", from:github, as:command, use:bin/q
 #zplug 'BurntSushi/xsv', from:gh-r, as:command, use:"xsv*"
 # need to do more work on this
 #zplug "larkery/zsh-histdb", use:"sqlite-history.zsh"
+
+#enable if programming python
+#zplug "Tarrasch/zsh-autoenv"
+#zplug 'pyenv/pyenv', as:"command", use:"bin/*"
+
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 zplug "exercism/cli", as:command, from:gh-r, use:"*linux-64bit*", rename-to:exercism
