@@ -74,6 +74,7 @@ alias tree="tree -a"
 alias 1='cd ..'
 alias 2='cd ../..'
 alias 3='cd ../../..'
+alias a=attach
 
 # docker shit
 alias dlist="echo PS && docker ps -a && echo && echo Volume LS && docker volume ls && echo && echo Images && docker images && echo && echo Network LS && docker network ls"
@@ -89,8 +90,16 @@ alias dpruneall="docker system prune --force && docker image prune --all --force
 alias dlogs="docker logs --details --follow --timestamps"
 alias dcup="docker-compose up"
 alias dcdn="docker-compose down --volumes --remove-orphans"
+alias ktool="docker pull wrp/k8s-tooling && docker run -it --rm --init --hostname k8s-tooling --user=${USER} --volume ${HOME}:${HOME} --volume /src:/repos --volume /etc/hosts:/etc/hosts --publish 15031:15031 --publish 15432:65432 wrp/k8s-tooling"
+
+# tig
+alias tigs="tig status"
+alias tigb="tig blame"
+# cfg
+alias cfg='/usr/bin/git --git-dir=/home/mfk/.cfg/ --work-tree=/home/mfk'
 
 alias nv=nvim
+alias nvs='nvim -On'
 
 
 # set ENV to a file invoked each time sh is started for interactive use.
@@ -178,12 +187,6 @@ fi
 
 #[ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
 
-# tig
-alias tigs="tig status"
-alias tigb="tig blame"
-# cfg
-alias cfg='/usr/bin/git --git-dir=/z/home/mfk/.cfg/ --work-tree=/z/home/mfk'
-
 #if [[ `hostname` == 'drossel' ]]; then 
 ##    eval "$(fasd --init auto)"
 #fi
@@ -243,18 +246,25 @@ if [[ `hostname` == 'drossel' ]]; then
     export PSQLRC="~/.psqlrc_drossel"
 fi
 
-pg() {
+_pg_service() {
     NAME=$1; shift
     case "$NAME" in
         pc | orne )
             NAME=prodcopy
             ;;
     esac
+}
+
+pg() {
+    _pg_service "$@"
+    shift;
     PGSERVICE=$NAME psql "$@"
 }
 
 pgs() {
-    export PGSERVICE=$1
+    _pg_service "$@"
+    shift;
+    export PGSERVICE=$NAME
 }
 
 #autoload -Uz add-zsh-hook
@@ -267,5 +277,5 @@ PATH="$PATH:${HOME}/.npm-packages/bin"
 fpath=($fpath ~mfk/.zsh_completions)
 # for some reason somethims $ZPLUG_BIN doesn't get added
 export PATH=$HOME/bin/first:$ZPLUG_BIN:$HOME/.perl6/bin:$PATH
- 
+
 #zprof
