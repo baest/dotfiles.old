@@ -22,9 +22,9 @@ windows:
   - irc:
       layout: even-horizontal
       panes:
-        - irc:
-            - autossh -R 4022:localhost:22 soe5501
-            - irc
+#        - irc:
+#            - autossh -R 4022:localhost:22 soe5501
+#            - irc
         - jabber:
             - irssi
 #  - TODO:
@@ -35,7 +35,7 @@ windows:
       layout: even-horizontal
       panes:
         - work-time:
-            - cd ~/devel/Work-time
+            - cd ~/src/Work-time
             - perl6 server.p6
         - db:
-            - sqlite3 ~/devel/Work-time/worktime.db
+            - sqlite3 ~/src/Work-time/worktime.db
