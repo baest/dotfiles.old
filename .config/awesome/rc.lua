@@ -374,7 +374,7 @@ globalkeys = gears.table.join(
               {description = "Switch keyboard layout", group = "launcher"}),
     awful.key({ modkey, "Mod1"    }, "l",   function()
         kbdcfg.switch_to_british()
-        awful.util.spawn( "/z/home/mfk/bin/lock" )
+        awful.util.spawn( "/home/mfk/bin/lock" )
     end,
               {description = "Lock the screen", group = "launcher"}
     ),
