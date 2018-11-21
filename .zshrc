@@ -91,6 +91,9 @@ alias dlogs="docker logs --details --follow --timestamps"
 alias dcup="docker-compose up"
 alias dcdn="docker-compose down --volumes --remove-orphans"
 alias ktool="docker pull wrp/k8s-tooling && docker run -it --rm --init --hostname k8s-tooling --user=${USER} --volume ${HOME}:${HOME} --volume /src:/repos --volume /etc/hosts:/etc/hosts --publish 15031:15031 --publish 15432:65432 wrp/k8s-tooling"
+fdo() {
+    fd -0 "$@" | xargs -0 nvim -O2
+}
 
 # tig
 alias tigs="tig status"
