@@ -10,10 +10,10 @@ zplug "zsh-users/zsh-history-substring-search"
 #zplug "junegunn/fzf", as:command, use:"bin/fzf-tmux"
 zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:"fzf"
 zplug "junegunn/fzf", use:"shell/key-bindings.zsh"
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
-#export FZF_DEFAULT_OPTS="--exact --color bg+:10,hl:5,hl+:5,pointer:7,spinner:2,info:3"
-#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_COMMAND='fd --type file'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+#export FZF_DEFAULT_OPTS="--exact --color bg+:10,hl:5,hl+:5,pointer:7,spinner:2,info:3"
 zplug "b4b4r07/enhancd", use:init.sh
 export ENHANCD_FILTER=fzy:fzf
 export ENHANCD_HOOK_AFTER_CD=ll
