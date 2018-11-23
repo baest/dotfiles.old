@@ -94,6 +94,9 @@ alias ktool="docker pull wrp/k8s-tooling && docker run -it --rm --init --hostnam
 fdo() {
     fd -0 "$@" | xargs -0 nvim -O2
 }
+fda() {
+    fd "$@" | perl -l40pe0
+}
 
 # tig
 alias tigs="tig status"
@@ -103,6 +106,7 @@ alias cfg='/usr/bin/git --git-dir=/home/mfk/.cfg/ --work-tree=/home/mfk'
 
 alias nv=nvim
 alias nvs='nvim -On'
+alias nv2='nvim -O2'
 
 
 # set ENV to a file invoked each time sh is started for interactive use.
@@ -160,6 +164,13 @@ if [ ! -z "$PS1" ]; then
 #                echo "set background=light" > ~/.vimrc.local
 #            fi
 #        fi
+#
+        alias vimreal=`which vim`
+        vim() {
+            echo "Do you mean nvim? Will open in neovim in 3 secs"
+            sleep 3
+            nvim "$@"
+        }
     else
         export PROMPT='%*:%n@%m %~%B%(?..(%?%))%b%#'
         umask 0002
