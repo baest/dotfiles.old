@@ -40,7 +40,7 @@ zplug "tarruda/zsh-autosuggestions", use:"zsh-autosuggestions.zsh"
 zplug "stedolan/jq", from:gh-r, as:command, rename-to:jq
 zplug "crilleengvall/GitUndo", from:github, as:command, use:git-undo
 zplug 'BurntSushi/ripgrep', from:gh-r, as:command, rename-to:"rg"
-zplug "harelba/q", from:github, as:command, use:bin/q
+#zplug "harelba/q", from:github, as:command, use:bin/q
 #zplug 'BurntSushi/xsv', from:gh-r, as:command, use:"xsv*"
 # need to do more work on this
 #zplug "larkery/zsh-histdb", use:"sqlite-history.zsh"
@@ -49,19 +49,19 @@ zplug "harelba/q", from:github, as:command, use:bin/q
 #zplug "Tarrasch/zsh-autoenv"
 #zplug 'pyenv/pyenv', as:"command", use:"bin/*"
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
 zplug "exercism/cli", as:command, from:gh-r, use:"*linux-64bit*", rename-to:exercism
 #zplug "exercism/cli", as:command, from:gh-r, use:"*linux-64bit*", rename-to:exercism, use:"shell/exercism_completion.zsh"
 
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
 zplug load
 
-#if _is_installed 'pyenv/pyenv'; then
-   # TODO this might be able to be turned into a hook-load cmd
-   # This must happen after 'zplug load' since the pyenv may not be available yet
-   export PYENV_ROOT="${ZPLUG_HOME}/repos/pyenv/pyenv"
-   eval "$(pyenv init -)"
-#fi
+##if _is_installed 'pyenv/pyenv'; then
+#   # TODO this might be able to be turned into a hook-load cmd
+#   # This must happen after 'zplug load' since the pyenv may not be available yet
+#   export PYENV_ROOT="${ZPLUG_HOME}/repos/pyenv/pyenv"
+#   eval "$(pyenv init -)"
+##fi
 
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan"
 #zplug load --verbose
