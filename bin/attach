@@ -1,0 +1,43 @@
+#!/usr/bin/env perl
+
+use 5.10.0;
+use strict;
+use warnings;
+
+my @sessions = map { chomp; $_ } qx(tmux list-sessions -F '#S');
+my $session_name = shift @ARGV;
+
+if ($session_name) {
+    my @sessions_found = grep { /$session_name/i } @sessions;
+    pick_session($sessions_found[0]) if @sessions_found == 1;
+    @sessions = @sessions_found if @sessions_found;
+}
+
+print_sessions();
+pick_session();
+exit;
+
+sub print_sessions {
+    my $i = 0;
+
+    foreach (@sessions) {
+        say "$i: $_";
+        $i++;
+    }
+}
+
+sub pick_session {
+    my ($session) = @_;
+
+    unless ($session) {
+        print "Pick session: ";
+        my $pick = <>;
+        if ($pick =~ /^\d+$/ && $pick > -1 && $pick < @sessions) {
+            $session = $sessions[$pick];
+        }
+
+        die "Invalid choice" unless ($session);
+    }
+
+    exec("tmux attach-session -t $session");
+}
