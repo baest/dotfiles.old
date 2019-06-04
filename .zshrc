@@ -67,6 +67,8 @@ export EMAIL=mfk@novozymes.com
 export NAME="Martin Frausing"
 export DEBFULLNAME="Martin Frausing (MFK)"
 
+export DISABLE_AUTO_TITLE=true
+
 alias dc=cd
 alias zudo="sudo zsh"
 alias top="top -c"
@@ -102,7 +104,7 @@ fda() {
 alias tigs="tig status"
 alias tigb="tig blame"
 # cfg
-alias cfg='/usr/bin/git --git-dir=/home/mfk/.cfg/ --work-tree=/home/mfk'
+alias cfg='/usr/bin/git --git-dir=/z/home/mfk/.cfg/ --work-tree=/z/home/mfk'
 
 alias nv=nvim
 alias nvs='nvim -On'
@@ -127,7 +129,7 @@ export TERM=xterm-256color
 eval `dircolors ~/ressources/dircolors-solarized/dircolors.ansi-light`
 
 if [ ! -z "$PS1" ]; then
-    if [[ `hostname` == 'drossel' ]]; then 
+    if [[ `hostname` == 'skallesluger' ]]; then 
         export PROMPT='%*:%n %~%B%(?..(%?%))%b%#'
         #(>&2 echo $LC_PAPER)
         eval `keychain -q --agents ssh --eval id_rsa personal_key_rsa`
@@ -201,7 +203,7 @@ fi
 
 #[ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
 
-#if [[ `hostname` == 'drossel' ]]; then 
+#if [[ `hostname` == 'skallesluger' ]]; then 
 ##    eval "$(fasd --init auto)"
 #fi
 
@@ -256,9 +258,14 @@ source ~/.zplug/init.zsh
 
 source ~/.zplug/plugins.zsh
 
-if [[ `hostname` == 'drossel' ]]; then
-    export PSQLRC="~/.psqlrc_drossel"
+    if [[ `hostname` == 'skallesluger' ]]; then
+    export PSQLRC="~/.psqlrc_skallesluger"
+    export EDITOR=nvim
+else
+    export EDITOR=vim
 fi
+
+alias e=$EDITOR
 
 _pg_service() {
     NAME=$1; shift
