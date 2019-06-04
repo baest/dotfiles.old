@@ -68,6 +68,7 @@
 [log]
 	abbrevCommit = true
     follow = true
+#    date = auto:human
 
 [diff]
 	mnemonicprefix = true
@@ -81,18 +82,28 @@
 [color]
 	ui = true
 
+[status]
+    relativePath = true
+
 #[color "diff-highlight"]
 #	oldNormal = red bold
 #	oldHighlight = red bold 52
 #	newNormal = green bold
 #	newHighlight = green bold 22
 
+[diff-so-fancy]
+	markEmptyLines = false
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = magenta bold
+	newHighlight = magenta bold 22
+
 [color "diff"]
 	meta = yellow
 	frag = magenta bold
 	commit = yellow bold
 	old = red bold
-	new = green bold
+	new = magenta bold
 	whitespace = red reverse
-[diff-so-fancy]
-	markEmptyLines = false
