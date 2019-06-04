@@ -5,6 +5,17 @@
 " https://github.com/tomtom/tcomment_vim
 "
 
+" general options
+set tabstop=4
+set shiftwidth=4
+set expandtab
+function! Copy() range
+    echo system('cat '. expand('%:p') .'| xclip -selection c')
+endfunction
+map <leader>pb :call Copy()
+vnoremap <leader>pb :!xclip -selection c<cr>u
+noremap <leader>v o<cr>:set paste<cr>:.!pbpaste<cr>:set nopaste<cr>
+
 call plug#begin()
 Plug 'altercation/vim-colors-solarized'
 Plug 'rhysd/committia.vim' " commit screen stuff
@@ -23,10 +34,14 @@ Plug 'blueyed/vim-diminactive'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
-Plug '/z/home/mfk/.zplug/repos/junegunn/fzf'
+Plug '/home/mfk/.zplug/repos/junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'farmergreg/vim-lastplace'
+Plug 'mogelbrod/vim-jsonpath'
+Plug 'rhysd/vim-gfm-syntax'
+Plug 'mileszs/ack.vim'
+Plug 'luochen1990/rainbow'
 call plug#end()
 
 "vim-colors-solarized
@@ -60,6 +75,9 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:tmuxline_powerline_separators = 0
 let g:tmuxline_preset = 'tmux'
 
+let g:rainbow_active = 1
+let g:rainbow_conf = { 'ctermfgs': ['DarkBlue', 'Magenta', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow'] }
+
 "let g:EditorConfig_verbose = 1
 let g:EditorConfig_max_line_indicator = "exceeding"
 
@@ -90,6 +108,10 @@ let g:fzf_layout = { 'window': '-tabnew' }
 let g:fzf_layout = { 'window': '10split enew' }
 let g:fzf_layout = { 'down': '~40%' }
 nnoremap <Tab> :Buffers<CR>
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 let g:sql_type_default = 'pgsql'
 
