@@ -3,7 +3,7 @@
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 # Customize to your needs...
-export PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:/home/mfk/install_src/rakudo/install/share/perl6/site/bin:$HOME/.cargo/bin
+export PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:/opt/src:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:/home/mfk/install_src/rakudo/install/share/perl6/site/bin:$HOME/.cargo/bin
 #
 limit coredumpsize 0
 autoload zkbd zmv zcalc help
@@ -167,15 +167,18 @@ if [ ! -z "$PS1" ]; then
 #            fi
 #        fi
 #
+    else
+        export PROMPT='%*:%n@%m %~%B%(?..(%?%))%b%#'
+        umask 0002
+    fi
+
+    if [[ `hostname` == 'skallesluger' || `hostname` == 'kapivar' ]]; then 
         alias vimreal=`which vim`
         vim() {
             echo "Do you mean nvim? Will open in neovim in 3 secs"
             sleep 3
             nvim "$@"
         }
-    else
-        export PROMPT='%*:%n@%m %~%B%(?..(%?%))%b%#'
-        umask 0002
     fi
 fi
 
@@ -258,7 +261,7 @@ source ~/.zplug/init.zsh
 
 source ~/.zplug/plugins.zsh
 
-    if [[ `hostname` == 'skallesluger' ]]; then
+if [[ `hostname` == 'skallesluger' || `hostname` == 'kapivar' ]]; then
     export PSQLRC="~/.psqlrc_skallesluger"
     export EDITOR=nvim
 else
