@@ -1,7 +1,7 @@
 # ~/.tmuxinator/work.yml
 
 name: work
-root: /home/mfk/src/nzdb
+root: /src/nzdb
 
 # Optional tmux socket
 # socket_name: foo

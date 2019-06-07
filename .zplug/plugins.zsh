@@ -20,7 +20,7 @@ export ENHANCD_HOOK_AFTER_CD=ll
 export ENHANCD_DISABLE_DOT=1
 export ENHANCD_DISABLE_HYPHEN=1
 export ENHANCD_DISABLE_HOME=1
-export ENHANCD_DIR=/home/mfk/.enhancd
+export ENHANCD_DIR=/z/home/mfk/.enhancd
 # Syntax highlighting for commands, load last
 zplug "zsh-users/zsh-syntax-highlighting", from:github, defer:3
 zplug "zsh-users/zsh-completions"
