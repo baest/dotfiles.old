@@ -42,11 +42,15 @@ Plug 'mogelbrod/vim-jsonpath'
 Plug 'rhysd/vim-gfm-syntax'
 Plug 'mileszs/ack.vim'
 Plug 'luochen1990/rainbow'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmux-plugins/vim-tmux'
+"Plug 'cloudhead/neovim-fuzzy'
 call plug#end()
 
+set t_Co=256                        " force vim to use 256 colors
 "vim-colors-solarized
 let g:solarized_termcolors=256
-let g:solarized_contrast="high"  
+let g:solarized_contrast="high"
 set background=light
 colorscheme solarized
 
@@ -56,9 +60,9 @@ let g:sudo_no_gui=1
 
 let g:ale_linters = {'perl': ['perl'], 'javascript': ['eslint', 'prettier'], 'python': ['flake8', 'pylint3', 'mypy']}
 let g:ale_python_mypy_options = '--ignore-missing-imports'
-let g:ale_fixers = {'python': ['yapf', 'isort']}
+"let g:ale_fixers = {'python': ['yapf', 'isort']}
 "let g:ale_fixers = {'python': ['autopep8', 'yapf', 'isort']}
-let g:ale_fix_on_save = 1
+"let g:ale_fix_on_save = 1
 let g:ale_sign_column_always = 1
 let g:ale_javascript_eslint_use_global = 1
 let g:ale_javascript_eslint_executable = 'eslint_d'
