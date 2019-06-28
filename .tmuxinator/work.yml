@@ -17,6 +17,7 @@ root: /src/nzdb
 
 # Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
 # tmux_command: byobu
+#      - /usr/bin/vim -c ':quit'
 
 windows:
   - SHELL:

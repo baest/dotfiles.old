@@ -4,7 +4,8 @@
 #}
 
 # Make sure to use double quotes
-zplug "zsh-users/zsh-history-substring-search"
+#zplug "zsh-users/zsh-history-substring-search"
+
 #zplug "junegunn/fzf-bin", as:command, from:gh-r, rename-to:fzf, use:"*${(L)$(uname -s)}*amd64*"
 #zplug "junegunn/fzf", as:command, use:bin/fzf-tmux
 #zplug "junegunn/fzf", as:command, use:"bin/fzf-tmux"
@@ -14,6 +15,7 @@ export FZF_DEFAULT_COMMAND='fd --type file'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 #export FZF_DEFAULT_OPTS="--exact --color bg+:10,hl:5,hl+:5,pointer:7,spinner:2,info:3"
+
 zplug "b4b4r07/enhancd", use:init.sh
 export ENHANCD_FILTER=fzy:fzf
 export ENHANCD_HOOK_AFTER_CD=ll
@@ -29,7 +31,8 @@ zplug "zsh-users/zaw"
 zplug "so-fancy/diff-so-fancy", as:command, use:diff-so-fancy
 zplug "zdharma/zsh-diff-so-fancy", as:command, use:bin/git-dsf
 #zplug "facebook/PathPicker" as:command from:gh-r
-zplug "okbob/pspg", as:command, hook-build:"./configure && make", use:pspg
+zplug "okbob/pspg", as:command, hook-build:"./configure --with-ncursesw && make", use:pspg
+
 zplug "jonas/tig", as:command, hook-build:"make", use:src/tig
 #zplug "zsh-users/zsh", use:"Completion/Debian/Unix/"
 zplug "zsh-users/zsh", use:"Completion/{Debian,Unix}/Command/"
@@ -44,6 +47,41 @@ zplug 'BurntSushi/ripgrep', from:gh-r, as:command, rename-to:"rg"
 #zplug 'BurntSushi/xsv', from:gh-r, as:command, use:"xsv*"
 # need to do more work on this
 #zplug "larkery/zsh-histdb", use:"sqlite-history.zsh"
+
+
+## TODO this doesn't seem to work
+#zplug aperezdc/zsh-fzy
+#
+#zle     -N   fzy-history-widget
+#bindkey '^R'  fzy-history-widget
+#zstyle :fzy:tmux    enabled      no
+#zstyle :fzy:history show-scores  yes
+#zstyle :fzy:history prompt       'history >> '
+#zstyle :fzy:history command      fzy-history-default-command
+#zstyle :fzy:file command 'fd --type file'
+#
+#if [[ $- == *i* ]]; then
+#
+#  __fzycmd() {
+#    echo "fzy"
+#  }
+#
+#  # CTRL-R - Paste the selected command from history into the command line
+#  fzy-history-widget() {
+#    local selected num
+#    selected=( $(fc -l 1 | $(__fzycmd) -s -q "${LBUFFER//$/\\$}") )
+#    if [ -n "$selected" ]; then
+#      num=$selected[1]
+#      if [ -n "$num" ]; then
+#        zle vi-fetch-history -n $num
+#      fi
+#    fi
+#    zle redisplay
+#  }
+#  zle -N fzy-history-widget
+#  bindkey '^R' fzy-history-widget
+#
+#fi
 
 #enable if programming python
 #zplug "Tarrasch/zsh-autoenv"

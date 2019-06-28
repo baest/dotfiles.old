@@ -129,7 +129,7 @@ export TERM=xterm-256color
 eval `dircolors ~/ressources/dircolors-solarized/dircolors.ansi-light`
 
 if [ ! -z "$PS1" ]; then
-    if [[ `hostname` == 'skallesluger' ]]; then 
+    if [[ `hostname` == 'skallesluger' || `hostname` == 'kapivar' ]]; then
         export PROMPT='%*:%n %~%B%(?..(%?%))%b%#'
         #(>&2 echo $LC_PAPER)
         eval `keychain -q --agents ssh --eval id_rsa personal_key_rsa`
@@ -169,10 +169,9 @@ if [ ! -z "$PS1" ]; then
 #
     else
         export PROMPT='%*:%n@%m %~%B%(?..(%?%))%b%#'
-        umask 0002
     fi
 
-    if [[ `hostname` == 'skallesluger' || `hostname` == 'kapivar' ]]; then 
+    if [[ `hostname` == 'skallesluger' || `hostname` == 'kapivar' ]]; then
         alias vimreal=`which vim`
         vim() {
             echo "Do you mean nvim? Will open in neovim in 3 secs"
@@ -245,7 +244,7 @@ setopt EXTENDED_GLOB
 setopt GLOBSTARSHORT
 
 #export DISPLAY=localhost:0
-export DISPLAY=:0
+#export DISPLAY=:0
 unset PGDATABASE
 
 # Inserted by NSQ at 29/03/2017. See #2351/sysadm
