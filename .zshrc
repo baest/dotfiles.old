@@ -290,6 +290,15 @@ pgs() {
     export PGSERVICE=$NAME
 }
 
+gco() {
+    git checkout $@
+    local CURRENT_BRANCH=$(git branch | grep '*' | awk '{ print $2 }')
+    git stash list | grep $CURRENT_BRANCH
+    if [ $? -eq 0 ]; then
+        echo The current branch has stashed content!
+    fi
+}
+
 #autoload -Uz add-zsh-hook
 #add-zsh-hook precmd  histdb-update-outcome
 
