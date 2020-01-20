@@ -16,6 +16,8 @@ map <leader>pb :call Copy()
 vnoremap <leader>pb :!xclip -selection c<cr>u
 noremap <leader>v o<cr>:set paste<cr>:.!pbpaste<cr>:set nopaste<cr>
 
+let g:plug_url_format = 'git@github.com:%s.git'
+
 call plug#begin()
 Plug 'altercation/vim-colors-solarized'
 Plug 'rhysd/committia.vim' " commit screen stuff
@@ -34,7 +36,7 @@ Plug 'blueyed/vim-diminactive'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
-Plug '/z/home/mfk/.zplug/repos/junegunn/fzf'
+Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'farmergreg/vim-lastplace'
@@ -44,6 +46,7 @@ Plug 'mileszs/ack.vim'
 Plug 'luochen1990/rainbow'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
+Plug 'lifepillar/pgsql.vim'
 "Plug 'cloudhead/neovim-fuzzy'
 call plug#end()
 
@@ -54,9 +57,9 @@ let g:solarized_contrast="high"
 set background=light
 colorscheme solarized
 
-let g:ackprg = 'ag --vimgrep'
-
 let g:sudo_no_gui=1
+
+let g:sql_type_default = 'pgsql'
 
 let g:ale_linters = {'perl': ['perl'], 'javascript': ['eslint', 'prettier'], 'python': ['flake8', 'pylint3', 'mypy']}
 let g:ale_python_mypy_options = '--ignore-missing-imports'
@@ -116,7 +119,5 @@ nnoremap <Tab> :Buffers<CR>
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-
-let g:sql_type_default = 'pgsql'
 
 autocmd FileType perl ab P use DDP; p

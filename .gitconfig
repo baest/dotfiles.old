@@ -28,7 +28,7 @@
     #editor = /usr/bin/vim
     #editor = giteditor.pl
     # use --no-pager diff to avoid
-    pager = diff-so-fancy | less --tabs=4 -RFX
+    #enable pager = diff-so-fancy | less --tabs=4 -RFX
     #pager = diff-so-fancy | less --tabs=4 --pattern '^(Date|added|deleted|modified): ' -RFX
 
 [help]
