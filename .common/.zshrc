@@ -8,10 +8,11 @@ EDITOR=nvim;   	export EDITOR
 PAGER=less;  	export PAGER
 
 alias ls="ls -F --color=auto"
-alias ll="ls -alh"
+#alias ll="ls -alh"
+alias ll="exa -la --git"
+alias tree="exa --tree -la --git"
 
 setopt extendedglob
-# The following lines were added by compinstall
 
 # _history
 zstyle ':completion:*' completer _expand _complete _correct _list
@@ -21,14 +22,6 @@ zstyle ':completion:*' use-perl 1
 zstyle :compinstall filename '/home/.zshrc'
 
 zstyle ':completion:*' special-dirs true
-
-autoload -Uz compinit
-if [ -f ~/.zcompdump ]; then
-	compinit -d ~/.zcompdump
-else
-	compinit
-fi
-# End of lines added by compinstall
 
 HOSTNAME=`hostname`
 

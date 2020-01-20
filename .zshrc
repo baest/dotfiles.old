@@ -3,7 +3,7 @@
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 # Customize to your needs...
-export PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:/opt/src:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:/home/mfk/install_src/rakudo/install/share/perl6/site/bin:$HOME/.cargo/bin
+export PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:/opt/src:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:$HOME/install_src/rakudo/install/share/perl6/site/bin:$HOME/.cargo/bin
 #
 limit coredumpsize 0
 autoload zkbd zmv zcalc help
@@ -19,7 +19,19 @@ select-word-style bash
 
 #source $HOME/.zshrc-oh-my-zsh
 
+export http_proxy="http://proxy.telia.se:808"
+export https_proxy="https://proxy.telia.se:808"
+
 source "$HOME/.common/.zshrc"
+
+source "$HOME/.zgen/zgen.zsh"
+
+if ! zgen saved; then
+	source "$HOME/.zgen_plugins.zsh"
+	zgen save
+fi
+
+source "$HOME/.zgen_plugins_conf.zsh"
 
 autoload colors zsh/terminfo
 if [[ "$terminfo[colors]" -ge 8 ]]; then
@@ -63,9 +75,8 @@ export LC_MESSAGES=en_GB.UTF-8
 export LC_CTYPE=en_GB.UTF-8
 export LC_ALL=en_GB.UTF-8
 
-export EMAIL=mfk@novozymes.com
+export EMAIL=martin.z.frausing@teliacompany.com
 export NAME="Martin Frausing"
-export DEBFULLNAME="Martin Frausing (MFK)"
 
 export DISABLE_AUTO_TITLE=true
 
@@ -125,8 +136,8 @@ ENV=$HOME/.shrc; export ENV
 #export PS1="%*:%n@%~%{${fg[red]}%}%B%(?..(%?%))%b-$(git_super_status)%#";
 	
 #colours for ls in solarised urxvt
-export TERM=xterm-256color
-eval `dircolors ~/ressources/dircolors-solarized/dircolors.ansi-light`
+#export TERM=xterm-256color
+#eval `dircolors ~/ressources/dircolors-solarized/dircolors.ansi-light`
 
 if [ ! -z "$PS1" ]; then
     if [[ `hostname` == 'skallesluger' || `hostname` == 'kapivar' ]]; then
@@ -247,21 +258,10 @@ setopt GLOBSTARSHORT
 #export DISPLAY=:0
 unset PGDATABASE
 
-# Inserted by NSQ at 29/03/2017. See #2351/sysadm
-for i in /etc/novoenv.d/*.sh; do
-    if [ -r "$i" ]; then
-        . $i
-    fi
-done
+source "${HOME}/.zgen/zgen.zsh"
 
-export ZPLUG_CACHE_DIR=~/.cache/zplug
-
-source ~/.zplug/init.zsh
-
-source ~/.zplug/plugins.zsh
-
-if [[ `hostname` == 'skallesluger' || `hostname` == 'kapivar' ]]; then
-    export PSQLRC="~/.psqlrc_skallesluger"
+if [[ `hostname` == 'baestmode' ]]; then
+    #export PSQLRC="~/.psqlrc_skallesluger"
     export EDITOR=nvim
 else
     export EDITOR=vim
@@ -306,8 +306,10 @@ gco() {
 PATH="$PATH:${HOME}/.npm-packages/bin"
 #TODO NPM manpath? see https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
 
-fpath=($fpath ~mfk/.zsh_completions)
+fpath=($fpath ~/.zsh_completions)
 # for some reason somethims $ZPLUG_BIN doesn't get added
 export PATH=$HOME/bin/first:$ZPLUG_BIN:$HOME/.perl6/bin:$PATH
 
 #zprof
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
