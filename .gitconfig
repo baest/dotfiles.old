@@ -7,6 +7,7 @@
 	ci = commit
 	br = branch
 	co = checkout
+    d = -c diff.noprefix=true diff
 	root = !pwd -P
     commitdiff = !git show --color --pretty=format:%b
 	stashed = stash list --stat --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
