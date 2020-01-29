@@ -93,6 +93,7 @@ export NAME="Martin Frausing"
 export DISABLE_AUTO_TITLE=true
 
 alias dc=cd
+mkcd() { mkdir ${@:1:$# - 1} "${@: -1}"; cd "${@: -1}" }
 alias fd=/usr/bin/fdfind
 alias zudo="sudo zsh"
 alias top="top -c"
