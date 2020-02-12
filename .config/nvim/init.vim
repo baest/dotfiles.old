@@ -36,7 +36,10 @@ Plug 'blueyed/vim-diminactive'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-fugitive'
-Plug '~/.fzf'
+"Git installed
+"Plug '~/.fzf'
+"Homebrew
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'farmergreg/vim-lastplace'
@@ -44,10 +47,10 @@ Plug 'mogelbrod/vim-jsonpath'
 Plug 'rhysd/vim-gfm-syntax'
 Plug 'mileszs/ack.vim'
 Plug 'luochen1990/rainbow'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'tmux-plugins/vim-tmux'
+"Plug 'christoomey/vim-tmux-navigator'
+"Plug 'tmux-plugins/vim-tmux'
 Plug 'lifepillar/pgsql.vim'
-"Plug 'cloudhead/neovim-fuzzy'
+Plug 'cloudhead/neovim-fuzzy'
 call plug#end()
 
 set t_Co=256                        " force vim to use 256 colors
