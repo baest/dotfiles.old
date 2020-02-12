@@ -17,6 +17,8 @@ autoload zkbd zmv zcalc help
 #zargs#zmv 
 autoload zsh/mathfunc
 autoload -U select-word-style
+autoload -Uz compinit
+compinit
 select-word-style bash
 #NOBEEP
 #[[ ! -f ~/.zkbd/$TERM ]] && zkbd
@@ -26,8 +28,8 @@ select-word-style bash
 
 #source $HOME/.zshrc-oh-my-zsh
 
-export http_proxy="http://proxy.telia.se:808"
-export https_proxy="http://proxy.telia.se:808"
+#export http_proxy="http://proxy.telia.se:808"
+#export https_proxy="http://proxy.telia.se:808"
 
 source "$HOME/.common/.zshrc"
 
@@ -89,12 +91,13 @@ export LC_ALL=en_GB.UTF-8
 
 export EMAIL=martin.z.frausing@teliacompany.com
 export NAME="Martin Frausing"
+export ANSIBLE_CONFIG=~/ansible/./ansible_nvk1598.cfg
 
 export DISABLE_AUTO_TITLE=true
 
 alias dc=cd
 mkcd() { mkdir ${@:1:$# - 1} "${@: -1}"; cd "${@: -1}" }
-alias fd=/usr/bin/fdfind
+#alias fd=/usr/bin/fdfind
 alias zudo="sudo zsh"
 alias top="top -c"
 alias tree="tree -a"
@@ -274,7 +277,9 @@ unset PGDATABASE
 
 source "${HOME}/.zgen/zgen.zsh"
 
-if [[ `hostname` == 'baestmode' ]]; then
+hostname=`hostname`
+
+if [[ $hostname == 'baestmode' || $hostname == 'FVFC40J6L413' ]]; then
     #export PSQLRC="~/.psqlrc_skallesluger"
     export EDITOR=nvim
 else
