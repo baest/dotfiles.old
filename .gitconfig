@@ -63,8 +63,8 @@
 [url "git+ssh://sal.nzcorp.net/z/sal/git/"]
     insteadOf = sal:
 
-[url "https://github.com"]
-        insteadOf = git://github.com
+[url "git@git.dk.telia.net:automation"]
+        insteadOf = teliaauto:
 
 #[rerere]
 #	enabled = true
