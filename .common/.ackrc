@@ -1,4 +1,0 @@
---ignore-dir=dojo
---ignore-dir=cpp_temp
---ignore-file=match:/all.(js|css).*/
---ignore-file=is:app.css
