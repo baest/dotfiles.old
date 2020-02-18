@@ -1,0 +1,113 @@
+#!/usr/bin/env perl
+
+use 5.024;
+use Config::IniFiles;
+use File::HomeDir;
+use IO::Socket::INET;
+use Capture::Tiny ':all';
+use Carp 'confess';
+
+my ($service) = @ARGV;
+
+my $home = File::HomeDir->my_home;
+my $cfg = Config::IniFiles->new( -file => "$home/.pg_service.conf" );
+
+die "Couldn't find service $service" unless $cfg->SectionExists($service);
+
+my $ssh_host = $cfg->val($service, 'host');
+my $port = $cfg->val($service, 'port', 5432);
+
+$ENV{SSH_REAL_HOST} = $ssh_host;
+
+if ($ssh_host eq 'localhost') {
+    $ENV{PGSERVICE} = $service;
+    exec('psql');
+}
+
+my $local_port = 65432;
+while(1) {
+    my $sock = check_port($local_port);
+
+    last unless $sock;
+    $local_port++;
+}
+
+say "Connecting to $local_port by forwarding from $ssh_host";
+
+my $did_setup_proxy_jump = needed_proxy_jump($ssh_host);
+
+my $has_connection = (!$did_setup_proxy_jump && has_ssh_connection($ssh_host));
+
+my @args = ('ssh');
+if ($has_connection) {
+    push @args, '-O', 'forward'
+}
+else {
+    push @args, '-f', '-N';
+}
+run_command(@args, '-L', "$local_port:localhost:$port", $ssh_host);
+
+if (check_port($local_port)) {
+    $ENV{PGSERVICE} = $service;
+    system(qw/psql -h localhost -p/, $local_port);
+}
+
+@args = ('ssh', '-O');
+if ($has_connection) {
+    push @args, 'cancel', '-L', "$local_port:localhost:$port";
+}
+else {
+    push @args, 'exit';
+}
+run_command(@args, $ssh_host);
+
+sub needed_proxy_jump {
+    my ($ssh_host) = @_;
+    my ($stdout, $stderr, $exit) = run_command('ssh', '-G', $ssh_host);
+
+    if ($stdout =~ /proxyjump\s+(.*)/) {
+        my $proxy_jump_host = $1;
+
+        unless (has_ssh_connection($proxy_jump_host)) {
+            run_lethal_command(qw/ssh -f -N/, $proxy_jump_host);
+            return 1;
+        }
+    }
+    return 0;
+}
+
+sub has_ssh_connection {
+    return (!run_command(qw/ssh -O check/, @_));
+}
+
+sub check_port {
+    my ($port) = @_;
+    return IO::Socket::INET->new( PeerAddr => 'localhost',
+                                      PeerPort => $port,
+                                      Proto    => 'tcp'
+    );
+}
+
+sub run_command {
+    my ($cmd, @args) = @_;
+    warn join(' ', $cmd, @args) if $ENV{DEBUG};
+
+    my ($stdout, $stderr, $exit) = capture {
+        system( $cmd, @args );
+    };
+
+    warn "out: $stdout\nerr: $stderr" if $ENV{DEBUG};
+
+    return (wantarray()) ? ($stdout, $stderr, $exit) : $exit;
+}
+
+sub run_lethal_command {
+    my ($cmd, @args) = @_;
+    my ($stdout, $stderr, $exit) = run_command($cmd, @args);
+
+    warn "out: $stdout\nerr: $stderr" if $exit;
+
+    confess "Failed " . join(' ', $cmd, @args) if $exit;
+    return $exit;
+}
+

@@ -1,0 +1,1 @@
+sudo dscl . -append /Groups/admin GroupMembership nvk1598

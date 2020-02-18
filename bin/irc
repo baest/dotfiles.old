@@ -1,0 +1,4 @@
+#!/bin/sh
+ssh -N irc &
+ssh -t irc /home/nvk1598/bin/irc
+ssh -O exit irc
