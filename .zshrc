@@ -299,18 +299,6 @@ _pg_service() {
     esac
 }
 
-pg() {
-    _pg_service "$@"
-    shift;
-    PGSERVICE=$NAME psql "$@"
-}
-
-pgs() {
-    _pg_service "$@"
-    shift;
-    export PGSERVICE=$NAME
-}
-
 gco() {
     git checkout $@
     local CURRENT_BRANCH=$(git branch | grep '*' | awk '{ print $2 }')
