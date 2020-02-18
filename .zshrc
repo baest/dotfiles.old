@@ -133,7 +133,7 @@ fda() {
 alias tigs="tig status"
 alias tigb="tig blame"
 # cfg
-alias cfg='/usr/bin/git --git-dir=/z/home/mfk/.cfg/ --work-tree=/z/home/mfk'
+alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 alias nv=nvim
 alias nvs='nvim -On'
