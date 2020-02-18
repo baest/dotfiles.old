@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 #zmodload zsh/zprof
 
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
@@ -17,8 +10,17 @@ autoload zkbd zmv zcalc help
 #zargs#zmv 
 autoload zsh/mathfunc
 autoload -U select-word-style
+
+# Highlight the current autocomplete option
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# Better SSH/Rsync/SCP Autocomplete
+zstyle ':completion:*:(scp|rsync):*' tag-order ' hosts:-ipaddr:ip\ address hosts:-host:host files'
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-host' ignored-patterns '*(.|:)*' loopback ip6-loopback localhost ip6-localhost broadcasthost
+zstyle ':completion:*:(ssh|scp|rsync):*:hosts-ipaddr' ignored-patterns '^(<->.<->.<->.<->|(|::)([[:xdigit:].]##:(#c,2))##(|%*))' '127.0.0.<->' '255.255.255.255' '::1' 'fe80::*'
+
 autoload -Uz compinit
-compinit
+compinit -i
 select-word-style bash
 #NOBEEP
 #[[ ! -f ~/.zkbd/$TERM ]] && zkbd
@@ -36,8 +38,6 @@ source "$HOME/.common/.zshrc"
 # consider moving to zplugin:
 # http://zdharma.org/zplugin/wiki/INTRODUCTION/
 # https://dev.to/misterf/awesome-terminal-upgrades-part-three-manage-zsh-plugins-using-zplugin-1fba
-# change from p10k to starship?
-# https://starship.rs/
 source "$HOME/.zgen/zgen.zsh"
 
 if ! zgen saved; then
@@ -153,7 +153,8 @@ ENV=$HOME/.shrc; export ENV
 #export PS1="%*:%n@%~%{${fg[red]}%}%B%(?..(%?%))%b-$(git_super_status)%#";
 	
 #colours for ls in solarised urxvt
-#export TERM=xterm-256color
+export TERM=xterm-256color
+export CLICOLOR=1
 #eval `dircolors ~/ressources/dircolors-solarized/dircolors.ansi-light`
 
 if [ ! -z "$PS1" ]; then
@@ -336,5 +337,8 @@ export PATH=$HOME/bin/first:$ZPLUG_BIN:$HOME/.perl6/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(starship init zsh)"
+
+[[ ! -f ~/.zgen/.iterm2_shell_integration.zsh ]] || source ~/.zgen/.iterm2_shell_integration.zsh
+
+export PS1="$PS1%{$(iterm2_prompt_mark)%}"
