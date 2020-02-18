@@ -7,7 +7,7 @@ BLOCKSIZE=K;	export BLOCKSIZE
 EDITOR=nvim;   	export EDITOR
 PAGER=less;  	export PAGER
 
-alias ls="ls -F --color=auto"
+alias ls="ls -F"
 #alias ll="ls -alh"
 alias ll="exa -la --git"
 alias tree="exa --tree -la --git"
