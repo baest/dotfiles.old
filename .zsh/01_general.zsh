@@ -3,8 +3,6 @@ bindkey -e
 bindkey '\eq' push-line-or-edit
 bindkey '^U' backward-kill-line
 
-setopt extendedglob
-
 autoload -Uz compinit
 compinit -i
 
@@ -41,6 +39,7 @@ setopt PUSHD_IGNORE_DUPS
 setopt AUTO_REMOVE_SLASH
 setopt NULL_GLOB
 setopt EXTENDED_GLOB
+setopt extendedglob
 setopt GLOBSTARSHORT
 
 limit coredumpsize 0
