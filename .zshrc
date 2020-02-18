@@ -32,6 +32,7 @@ select-word-style bash
 
 #export http_proxy="http://proxy.telia.se:808"
 #export https_proxy="http://proxy.telia.se:808"
+export SSH_REAL_HOST=`hostname`
 
 source "$HOME/.common/.zshrc"
 
