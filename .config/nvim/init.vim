@@ -51,6 +51,7 @@ Plug 'luochen1990/rainbow'
 "Plug 'tmux-plugins/vim-tmux'
 Plug 'lifepillar/pgsql.vim'
 Plug 'cloudhead/neovim-fuzzy'
+Plug 'yko/mojo.vim'
 call plug#end()
 
 set t_Co=256                        " force vim to use 256 colors
