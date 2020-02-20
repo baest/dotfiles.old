@@ -13,3 +13,9 @@ else
 fi;
 cfg checkout
 cfg config status.showUntrackedFiles no
+
+git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+mkdir .zsh_history
+#rm .ssh/config*
+
+#curl -Lks https://raw.githubusercontent.com/baest/dotfiles/master/checkout-repo.sh | zsh
