@@ -19,3 +19,4 @@ mkdir .zsh_history
 #rm .ssh/config*
 
 #curl -Lks https://raw.githubusercontent.com/baest/dotfiles/master/checkout-repo.sh | zsh
+#cfg fetch --all; cfg reset --hard ; cfg rebase FETCH_HEAD; rm .ssh/config*
