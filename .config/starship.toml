@@ -9,10 +9,9 @@ use_symbol_for_status = true  # Show "✖" when the command faild
 
 [hostname]
 ssh_only = false
-prefix = "❮ "
+prefix = "❮"
 suffix = "❯"
-style = "bold dimmed white"
-disabled = true
+disabled = false
 
 [username]
 style_user = "bold dimmed blue"
