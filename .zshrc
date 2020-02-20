@@ -67,8 +67,12 @@ export PATH=$HOME/bin/first:$ZPLUG_BIN:$HOME/.perl6/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-eval "$(starship init zsh)"
+if ! [ -x "$(command -v starship)" ]; then
+  eval "$(starship init zsh)"
+fi
 
-[[ ! -f ~/.zgen/.iterm2_shell_integration.zsh ]] || source ~/.zgen/.iterm2_shell_integration.zsh
+if [[ ! -z "$ITERM_SESSION_ID" ]]; then
+    [[ ! -f ~/.zgen/.iterm2_shell_integration.zsh ]] || source ~/.zgen/.iterm2_shell_integration.zsh
 
-export PS1="$PS1%{$(iterm2_prompt_mark)%}"
+    export PS1="$PS1%{$(iterm2_prompt_mark)%}"
+fi
