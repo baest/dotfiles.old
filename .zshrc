@@ -67,7 +67,7 @@ export PATH=$HOME/bin/first:$ZPLUG_BIN:$HOME/.perl6/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if ! [ -x "$(command -v starship)" ]; then
+if [[ -x "$(command -v starship)" ]]; then
   eval "$(starship init zsh)"
 fi
 
