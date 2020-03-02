@@ -6,13 +6,20 @@ use File::HomeDir;
 use IO::Socket::INET;
 use Capture::Tiny ':all';
 use Carp 'confess';
+use Path::Tiny;
+use JSON::MaybeXS;
 
 my ($service) = @ARGV;
 
 my $home = File::HomeDir->my_home;
 my $cfg = Config::IniFiles->new( -file => "$home/.pg_service.conf" );
+my $session_dir = path('/tmp/pg');
 
 die "Couldn't find service $service" unless $cfg->SectionExists($service);
+
+unless ($session_dir->is_dir) {
+    mkdir "$session_dir" or die "Couldn't create $session_dir: $!";
+}
 
 my $ssh_host = $cfg->val($service, 'host');
 my $port = $cfg->val($service, 'port', 5432);
@@ -25,14 +32,28 @@ if ($ssh_host eq 'localhost') {
 }
 
 my $local_port = 65432;
+my $has_tunnel = 0;
+
+say "Connecting to $local_port by forwarding from $ssh_host";
+
+my $session_file = $session_dir->child("$ssh_host--$port");
+if ($session_file->is_file) {
+    my $data = decode_json($session_file->slurp);
+    my $local_port = $data->{local_port};
+
+    if (check_port($local_port)) {
+        say "Connection already established";
+        $ENV{PGSERVICE} = $service;
+        exec(qw/psql -h localhost -p/, $local_port);
+    }
+}
+
 while(1) {
     my $sock = check_port($local_port);
 
     last unless $sock;
     $local_port++;
 }
-
-say "Connecting to $local_port by forwarding from $ssh_host";
 
 my $did_setup_proxy_jump = needed_proxy_jump($ssh_host);
 
@@ -46,6 +67,8 @@ else {
     push @args, '-f', '-N';
 }
 run_command(@args, '-L', "$local_port:localhost:$port", $ssh_host);
+
+$session_file->spew(encode_json({ host => $ssh_host, port => $port, local_port => $local_port }));
 
 if (check_port($local_port)) {
     $ENV{PGSERVICE} = $service;
