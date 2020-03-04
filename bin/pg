@@ -86,6 +86,8 @@ else {
 }
 run_command(@args, $ssh_host);
 
+$session_file->remove();
+
 sub needed_proxy_jump {
     my ($ssh_host) = @_;
     my ($stdout, $stderr, $exit) = run_command('ssh', '-G', $ssh_host);
