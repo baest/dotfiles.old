@@ -15,6 +15,8 @@ my $home = File::HomeDir->my_home;
 my $cfg = Config::IniFiles->new( -file => "$home/.pg_service.conf" );
 my $session_dir = path('/tmp/pg');
 
+#TODO ctrl+c shouldn't kill connection
+
 die "Couldn't find service $service" unless $cfg->SectionExists($service);
 
 unless ($session_dir->is_dir) {
@@ -34,15 +36,13 @@ if ($ssh_host eq 'localhost') {
 my $local_port = 65432;
 my $has_tunnel = 0;
 
-say "Connecting to $local_port by forwarding from $ssh_host";
-
 my $session_file = $session_dir->child("$ssh_host--$port");
 if ($session_file->is_file) {
     my $data = decode_json($session_file->slurp);
     my $local_port = $data->{local_port};
 
     if (check_port($local_port)) {
-        say "Connection already established";
+        say "Connection already established, reusing $local_port from $ssh_host";
         $ENV{PGSERVICE} = $service;
         exec(qw/psql -h localhost -p/, $local_port);
     }
@@ -54,6 +54,8 @@ while(1) {
     last unless $sock;
     $local_port++;
 }
+
+say "Connecting to $local_port by forwarding from $ssh_host";
 
 my $did_setup_proxy_jump = needed_proxy_jump($ssh_host);
 
