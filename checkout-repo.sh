@@ -16,6 +16,7 @@ cfg config status.showUntrackedFiles no
 
 git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 mkdir .zsh_history
+mkdir .psql_history
 
 rm .ssh/config*
 echo .ssh/config >> .cfg/info/exclude
