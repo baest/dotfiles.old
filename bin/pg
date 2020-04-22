@@ -9,7 +9,7 @@ use Carp 'confess';
 use Path::Tiny;
 use JSON::MaybeXS;
 
-my ($service) = @ARGV;
+my ($service, $requested_port) = @ARGV;
 
 my $home = File::HomeDir->my_home;
 my $cfg = Config::IniFiles->new( -file => "$home/.pg_service.conf" );
@@ -33,7 +33,7 @@ if ($ssh_host eq 'localhost') {
     exec('psql');
 }
 
-my $local_port = 65432;
+my $local_port = $requested_port || 65432;
 my $has_tunnel = 0;
 
 my $session_file = $session_dir->child("$ssh_host--$port");
@@ -52,6 +52,7 @@ while(1) {
     my $sock = check_port($local_port);
 
     last unless $sock;
+    die "Requested port $requested_port not available" if $requested_port;
     $local_port++;
 }
 
