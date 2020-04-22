@@ -7,7 +7,7 @@
 	ci = commit
 	br = branch
 	co = checkout
-    d = -c diff.noprefix=true diff
+    d = -c diff.noprefix=true diff --relative
 	root = !pwd -P
     commitdiff = !git show --color --pretty=format:%b
 	stashed = stash list --stat --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
@@ -23,6 +23,10 @@
     cistat = shortlog -s -n --all --no-merges
     current-branch = rev-parse --abbrev-ref HEAD
     track = !git branch --set-upstream-to=origin/$(git current-branch)
+	#ignore changes to files
+    ignore = update-index --assume-unchanged
+    unignore = update-index --no-assume-unchanged
+    ignored = !git ls-files -v | grep "^[[:lower:]]"
 
 [core]
 	excludesfile = ~/.gitignore
