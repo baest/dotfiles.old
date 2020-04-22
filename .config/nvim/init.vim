@@ -1,17 +1,41 @@
 
 " Consider:
 " https://github.com/junegunn/tmux-complete.vim
-" https://github.com/junegunn/fzf.vim
 " https://github.com/tomtom/tcomment_vim
+
+
+" Help
+"  :perldo s/searchme/replaceme/g
+"  :%!perl -pi -e 's/<text>/\n/'
+
+"  when writing searches with /... use ctrl+r, ctrl+w to get the word under the cursor copied to the search terms
+
+"  % jumps to the other part of a () {} []...
+
+"  ctrl+x-ctrl+f for autocomplete filenames
+"  ctrl+x-ctrl+u for autocomplete whatever visible inside tmux panel
 "
+"  if you want to join without inserting spaces, do gJ
+
+"  delete line match abe
+"  :g/abe/d
+
+" paste in insert mode
+" ctrl+o p (ctrl exits insert mode for one command)
+" ctrl-R " (ctrl-R can be used with other registers than ")
+" 
+	" Setting stuff in all windows/tabs at once
+" :tabdo windo set number
+
 
 " general options
 set tabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 function! Copy() range
     echo system('cat '. expand('%:p') .'| xclip -selection c')
 endfunction
+let mapleader = ","
 map <leader>pb :call Copy()
 vnoremap <leader>pb :!xclip -selection c<cr>u
 noremap <leader>v o<cr>:set paste<cr>:.!pbpaste<cr>:set nopaste<cr>
@@ -21,7 +45,6 @@ let g:plug_url_format = 'git@github.com:%s.git'
 call plug#begin()
 Plug 'altercation/vim-colors-solarized'
 Plug 'rhysd/committia.vim' " commit screen stuff
-"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'mbbill/undotree'
@@ -45,13 +68,14 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'farmergreg/vim-lastplace'
 Plug 'mogelbrod/vim-jsonpath'
 Plug 'rhysd/vim-gfm-syntax'
-Plug 'mileszs/ack.vim'
+"Plug 'mileszs/ack.vim' " disabled for now, since fzf.vim provides :Ag
 Plug 'luochen1990/rainbow'
 "Plug 'christoomey/vim-tmux-navigator'
 "Plug 'tmux-plugins/vim-tmux'
 Plug 'lifepillar/pgsql.vim'
 Plug 'cloudhead/neovim-fuzzy'
 Plug 'yko/mojo.vim'
+Plug 'dpc/vim-smarttabs'
 call plug#end()
 
 set t_Co=256                        " force vim to use 256 colors
@@ -92,9 +116,6 @@ let g:rainbow_conf = { 'ctermfgs': ['DarkBlue', 'Magenta', 'Red', 'DarkGray', 'D
 "let g:EditorConfig_verbose = 1
 let g:EditorConfig_max_line_indicator = "exceeding"
 
-"ctrlp
-"nnoremap <Tab> :CtrlPBuffer<CR>
-
 "committia
 let g:committia_hooks = {}
 function! g:committia_hooks.edit_open(info)
@@ -119,6 +140,11 @@ let g:fzf_layout = { 'window': '-tabnew' }
 let g:fzf_layout = { 'window': '10split enew' }
 let g:fzf_layout = { 'down': '~40%' }
 nnoremap <Tab> :Buffers<CR>
+nnoremap <S-Tab> :Files<CR>
+"nnoremap <Leader>* :Ag! =expand("<cword>") <CR>
+"let mapleader="," (default)
+nnoremap <Leader>* :Ag <C-r>=expand('<cword>')<CR><CR>
+"fzf#vim#grep(command, [has_column bool], [spec dict], [fullscreen bool])
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
