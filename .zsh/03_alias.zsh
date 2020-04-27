@@ -26,3 +26,4 @@ alias cfg='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias nv=nvim
 alias nvs='nvim -On'
 alias nv2='nvim -O2'
+alias damnit='nvim $(git grep -l "<<<< HEAD")'
