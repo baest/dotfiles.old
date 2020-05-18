@@ -23,8 +23,8 @@
 " paste in insert mode
 " ctrl+o p (ctrl exits insert mode for one command)
 " ctrl-R " (ctrl-R can be used with other registers than ")
-" 
-	" Setting stuff in all windows/tabs at once
+"
+" Setting stuff in all windows/tabs at once
 " :tabdo windo set number
 
 
@@ -74,6 +74,7 @@ Plug 'luochen1990/rainbow'
 "Plug 'tmux-plugins/vim-tmux'
 Plug 'lifepillar/pgsql.vim'
 Plug 'cloudhead/neovim-fuzzy'
+Plug 'Raku/vim-raku'
 Plug 'yko/mojo.vim'
 Plug 'dpc/vim-smarttabs'
 call plug#end()
@@ -151,3 +152,4 @@ if executable('ag')
 endif
 
 autocmd FileType perl ab P use DDP; p
+autocmd FileType sql set expandtab
