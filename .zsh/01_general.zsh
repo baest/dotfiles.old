@@ -41,6 +41,7 @@ setopt NULL_GLOB
 setopt EXTENDED_GLOB
 setopt extendedglob
 setopt GLOBSTARSHORT
+setopt no_complete_aliases
 
 limit coredumpsize 0
 autoload zkbd zmv zcalc help
