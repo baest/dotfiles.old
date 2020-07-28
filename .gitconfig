@@ -29,8 +29,12 @@
     ignored = !git ls-files -v | grep "^[[:lower:]]"
 
 [core]
+	#pager = delta
+	#pager = delta --plus-color="#012800" --minus-color="#340001" --syntax-theme='OneHalfLight'
+	pager = delta --syntax-theme='Solarized (light)'
 	excludesfile = ~/.gitignore
     untrackedCache = true
+	commitGraph = true
     #editor = /usr/bin/vim
     #editor = giteditor.pl
     # use --no-pager diff to avoid
@@ -74,8 +78,8 @@
 #	enabled = true
 [log]
 	abbrevCommit = true
-    follow = true
-#    date = auto:human
+	follow = true
+    date = auto:human
 
 [diff]
 	mnemonicprefix = true
@@ -92,11 +96,19 @@
 [status]
     relativePath = true
 
+[delta]
+	theme = 'Solarized (light)'
+#    plus-color = "#012800"
+#    minus-color = "#340001"
+
 #[color "diff-highlight"]
 #	oldNormal = red bold
 #	oldHighlight = red bold 52
 #	newNormal = green bold
 #	newHighlight = green bold 22
+
+[interactive]
+    diffFilter = delta --color-only
 
 [diff-so-fancy]
 	markEmptyLines = false
@@ -114,3 +126,9 @@
 	old = red bold
 	new = magenta bold
 	whitespace = red reverse
+
+[gc]
+	writeCommitGraph = true
+
+[fetch]
+	writeCommitGraph = true
