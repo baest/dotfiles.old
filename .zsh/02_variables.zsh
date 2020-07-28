@@ -10,7 +10,7 @@ export PAGER=less;
 export PS1="%*:%n@%m:%~%{${fg[red]}%}%B%(?..(%?%))%b%#";
 
 # Customize to your needs...
-export PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:/opt/src:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:$HOME/install_src/rakudo/install/share/perl6/site/bin:$HOME/.cargo/bin:/usr/local/Cellar/rakudo/2020.05/share/perl6/site/bin
+export PATH=/sbin:/bin:/usr/sbin:/usr/local/bin:/usr/bin:/opt/src:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:$HOME/install_src/rakudo/install/share/perl6/site/bin:$HOME/.cargo/bin:/usr/local/Cellar/rakudo/2020.06/share/perl6/site/bin:/Users/nvk1598/install_src/git-fuzzy/bin
 
 #export http_proxy="http://proxy.telia.se:808"
 #export https_proxy="http://proxy.telia.se:808"
