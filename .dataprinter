@@ -1,4 +1,11 @@
 {
 	caller_info => 1,
 	hash_separator => ' => ',
+	filters => {
+		'-class' => sub {
+		    my ($obj, $p) = @_;
+			return unless $obj->isa( 'Telia::DB::Product' );
+			return ref ($obj) . ' ' . $obj->{TYPE_NAME};
+		}
+	},
 }
