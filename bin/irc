@@ -1,4 +1,7 @@
 #!/bin/sh
-ssh -N irc &
-ssh -t irc /home/nvk1598/bin/irc
+# create tunnel, do localforward and execure localcommand
+ssh -Nf irc
+# run irssi
+ssh -o PermitLocalCommand=No -t irc /home/nvk1598/bin/irc
+# close tunnel and quit localforward and localcommand
 ssh -O exit irc

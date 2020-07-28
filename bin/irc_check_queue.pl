@@ -3,6 +3,7 @@
 use 5.020;
 use Beanstalk::Client;
 use String::ShellQuote;
+#use Sys::RunAlone silent => 1;
 
 my $client = Beanstalk::Client->new({});
 
@@ -20,7 +21,7 @@ while(1) {
 
     sleep 5;
 
-    $job->delete;
+	$job->delete;
 }
 
 say 'done';
