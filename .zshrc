@@ -14,7 +14,8 @@ done
 # consider moving to zplugin:
 # http://zdharma.org/zplugin/wiki/INTRODUCTION/
 # https://dev.to/misterf/awesome-terminal-upgrades-part-three-manage-zsh-plugins-using-zplugin-1fba
-source "$HOME/.zgen/zgen.zsh"
+source "${HOME}/.zgen/zgen.zsh"
+source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
 
 if ! zgen saved; then
 	source "$HOME/.zgen_plugins.zsh"
@@ -45,8 +46,6 @@ fi
 #. /usr/share/autojump/autojump.sh
 
 #[ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
-
-source "${HOME}/.zgen/zgen.zsh"
 
 #autoload -Uz add-zsh-hook
 #add-zsh-hook precmd  histdb-update-outcome
