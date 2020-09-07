@@ -8,7 +8,6 @@
 	br = branch
 	co = checkout
     d = -c diff.noprefix=true diff --relative
-	root = !pwd -P
     commitdiff = !git show --color --pretty=format:%b
 	stashed = stash list --stat --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
     lasttag = !git tag -l 'release-*' --sort=-taggerdate | head -n 1
@@ -19,7 +18,7 @@
     anw = !git diff -U0 -w --no-color -- \"$@\" | git apply --cached --ignore-whitespace --unidiff-zero "#"
     rollback = !git reset --soft HEAD~ && git status
     ar = commit --amend --reuse-message HEAD # amend reuse
-	alias = config --get-regexp ^alias\\.
+	#alias = config --get-regexp ^alias\\.
     cistat = shortlog -s -n --all --no-merges
     current-branch = rev-parse --abbrev-ref HEAD
     track = !git branch --set-upstream-to=origin/$(git current-branch)
@@ -67,6 +66,7 @@
 [rebase]
     stat = true
     autoStash = true
+	abbreviateCommands = true
 
 [url "git+ssh://sal.nzcorp.net/z/sal/git/"]
     insteadOf = sal:
