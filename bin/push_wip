@@ -1,0 +1,46 @@
+#/usr/bin/env bash
+#watchman -- trigger ~/tnid push_wip -- push_wip
+#watchman -- trigger ~/tnid/snap2 push_wip -- push_wip
+set -x
+SETUP=
+
+if [ "$1" == "--setup" ]; then
+	SETUP=1; shift
+	BRANCH=`/usr/local/bin/git rev-parse --abbrev-ref HEAD`
+	BRANCH="refs/wip/$BRANCH"
+fi
+
+if [ "$1" == "--drop" ]; then
+	watchman -- trigger-del . push_wip
+	watchman watch-del-all
+	exit;
+fi
+
+REPO=$1
+HOST=$2
+
+if [ $SETUP ]; then
+	# default to root dir name as repo name
+	if [ -z "$HOST" ]; then
+		HOST="$REPO"
+		REPO=$(basename `git root`)
+	fi
+	watchman watch-project .
+	watchman -- trigger . push_wip -- push_wip $REPO $HOST $BRANCH
+	echo "tail -f /usr/local/var/run/watchman/nvk1598-state/log"
+	tail -f /usr/local/var/run/watchman/nvk1598-state/log
+	exit;
+	watchman -j <<-EOT
+	["trigger", '.', {
+	  "name": "push_wip",
+	  "command": ["push_wip $REPO $BRANCH $HOST"]
+	}]
+EOT
+fi
+
+BRANCH=$3
+
+git wip save
+git push -f $HOST:$REPO $BRANCH
+SSH_CMD="cd $REPO && git checkout -f $BRANCH && git log -1 --stat"
+ssh $HOST "$SSH_CMD"
