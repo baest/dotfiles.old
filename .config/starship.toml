@@ -77,3 +77,6 @@ show_sync_count = true
 commit_hash_length = 7
 only_detached = false
 prefix = "(commit "
+
+[python]
+disabled = true
