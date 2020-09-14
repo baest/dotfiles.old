@@ -40,7 +40,7 @@ fi
 
 BRANCH=$3
 
-git wip save
+git wip save --untracked
 git push -f $HOST:$REPO $BRANCH
 SSH_CMD="cd $REPO && git checkout -f $BRANCH && git log -1 --stat"
 ssh $HOST "$SSH_CMD"
