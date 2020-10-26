@@ -43,7 +43,8 @@ noremap <leader>v o<cr>:set paste<cr>:.!pbpaste<cr>:set nopaste<cr>
 let g:plug_url_format = 'git@github.com:%s.git'
 
 call plug#begin()
-Plug 'altercation/vim-colors-solarized'
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'overcache/NeoSolarized'
 Plug 'rhysd/committia.vim' " commit screen stuff
 Plug 'tpope/vim-eunuch'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -81,10 +82,12 @@ call plug#end()
 
 set t_Co=256                        " force vim to use 256 colors
 "vim-colors-solarized
-let g:solarized_termcolors=256
-let g:solarized_contrast="high"
 set background=light
-colorscheme solarized
+"let g:solarized_termcolors=256
+"let g:solarized_contrast="high"
+"colorscheme solarized
+"colorscheme NeoSolarized
+let g:neosolarized_contrast = "high"
 
 let g:sudo_no_gui=1
 
