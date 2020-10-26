@@ -8,9 +8,7 @@ min_time = 1
 use_symbol_for_status = true  # Show "✖" when the command faild
 
 [hostname]
-ssh_only = false
-prefix = "❮"
-suffix = "❯"
+format =  "❮$hostname❯ "
 disabled = false
 
 [username]
@@ -46,6 +44,7 @@ show_swap = true
 threshold = 95
 style = "bold dimmed green"
 disabled = false
+format = "[${swap} ${swap_pct}]($style) "
 
 [git_branch]
 style = "bold yellow"
@@ -76,7 +75,11 @@ show_sync_count = true
 [git_commit]
 commit_hash_length = 7
 only_detached = false
-prefix = "(commit "
+format = "[\\(commit $hash\\)]($style) "
+
+[git_state]
+format = "[\\($state( $progress_current of $progress_total)\\)]($style) "
+cherry_pick = "[🍒 PICKING](bold red)"
 
 [python]
 disabled = true
