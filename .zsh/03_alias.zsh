@@ -1,6 +1,7 @@
 alias ls="ls -F"
 #alias ll="ls -alh"
 alias ll="exa -laag --git"
+#alias ll="exa -laag --git --grid"
 alias tree="exa --tree -laag --git"
 
 alias cls="echo -ne '\033c'"
