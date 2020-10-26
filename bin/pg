@@ -16,6 +16,7 @@ my $cfg = Config::IniFiles->new( -file => "$home/.pg_service.conf" );
 my $session_dir = path('/tmp/pg');
 
 #TODO ctrl+c shouldn't kill connection
+#TODO create child process keeping an eye on connection and HUP the parent to reconnect and kill psql session
 
 die "Couldn't find service $service" unless $cfg->SectionExists($service);
 
