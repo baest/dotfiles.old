@@ -26,74 +26,74 @@ set t_ti= t_te=
 let g:ackprg = 'ag --vimgrep'
 :set directory=$HOME/.vim/swap//
 
-call plug#begin('~/.vim/plugged')
-
-Plug 'altercation/vim-colors-solarized'
-Plug 'mileszs/ack.vim'
-Plug 'tpope/vim-surround'
-Plug 'jgdavey/tslime.vim'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'benmills/vimux'
-"Plug 'edkolev/tmuxline.vim'
-Plug 'wellle/tmux-complete.vim'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-fugitive'
-Plug 'sk1418/Join'
-Plug 'nelstrom/vim-visual-star-search'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'rhysd/committia.vim' " commit screen stuff
-"Plug 'vim-perl/vim-perl'
-Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp highlight-all-pragmas method-signatures moose test-more try-tiny' }
-Plug 'vim-perl/vim-perl6'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'tmux-plugins/vim-tmux'
-Plug 'chrisbra/SudoEdit.vim'
-Plug 'junegunn/vim-slash'
-Plug 'junegunn/vim-easy-align'
-Plug 'lifepillar/pgsql.vim'
-Plug 'godlygeek/tabular' " for tabularizing on =, do :Tabularize /=
-Plug 'matze/vim-move'
-Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'blueyed/vim-diminactive'
-Plug 'w0rp/ale'
-Plug 'elmcast/elm-vim'
-Plug 'mbbill/undotree'
-
-" disabled, might conflict with vim-slash, but if all is imported, vim gets kinda bugga
-" haven't found how to enable trackperlvars.vim support only
-"Plug 'thoughtstream/Damian-Conway-s-Vim-Setup'
-
-call plug#end()
-
-let g:sudo_no_gui=1
-
-let g:ale_linters = {'perl': ['perl'], 'javascript': ['eslint', 'prettier'], 'python': ['flake8', 'pylint3', 'mypy']}
-let g:ale_python_mypy_options = '--ignore-missing-imports'
-let g:ale_fixers = {'python': ['autopep8', 'yapf', 'isort']}
-let g:ale_fix_on_save = 1
-let g:ale_sign_column_always = 1
-let g:ale_javascript_eslint_use_global = 1
-let g:ale_javascript_eslint_executable = 'eslint_d'
-" let ale be usable (not too goddam slow)
-let g:ale_echo_delay = 500
-
-let g:airline#extensions#ale#enabled = 1
-let g:airline_theme='solarized'
-
-"plugin config:
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:tmuxline_powerline_separators = 0
-let g:tmuxline_preset = 'tmux'
-let g:ackprg = 'ag --vimgrep'
-
-"let g:EditorConfig_verbose = 1
-let g:EditorConfig_max_line_indicator = "exceeding"
+"call plug#begin('~/.vim/plugged')
+"
+"Plug 'altercation/vim-colors-solarized'
+"Plug 'mileszs/ack.vim'
+"Plug 'tpope/vim-surround'
+"Plug 'jgdavey/tslime.vim'
+"Plug 'bling/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+"Plug 'benmills/vimux'
+""Plug 'edkolev/tmuxline.vim'
+"Plug 'wellle/tmux-complete.vim'
+"Plug 'tpope/vim-obsession'
+"Plug 'tpope/vim-fugitive'
+"Plug 'sk1418/Join'
+"Plug 'nelstrom/vim-visual-star-search'
+"Plug 'christoomey/vim-tmux-navigator'
+"Plug 'rhysd/committia.vim' " commit screen stuff
+""Plug 'vim-perl/vim-perl'
+"Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp highlight-all-pragmas method-signatures moose test-more try-tiny' }
+"Plug 'vim-perl/vim-perl6'
+"Plug 'editorconfig/editorconfig-vim'
+"Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ntpeters/vim-better-whitespace'
+"Plug 'tmux-plugins/vim-tmux'
+"Plug 'chrisbra/SudoEdit.vim'
+"Plug 'junegunn/vim-slash'
+"Plug 'junegunn/vim-easy-align'
+"Plug 'lifepillar/pgsql.vim'
+"Plug 'godlygeek/tabular' " for tabularizing on =, do :Tabularize /=
+"Plug 'matze/vim-move'
+"Plug 'tmux-plugins/vim-tmux-focus-events'
+"Plug 'blueyed/vim-diminactive'
+"Plug 'w0rp/ale'
+"Plug 'elmcast/elm-vim'
+"Plug 'mbbill/undotree'
+"
+"" disabled, might conflict with vim-slash, but if all is imported, vim gets kinda bugga
+"" haven't found how to enable trackperlvars.vim support only
+""Plug 'thoughtstream/Damian-Conway-s-Vim-Setup'
+"
+"call plug#end()
+"
+"let g:sudo_no_gui=1
+"
+"let g:ale_linters = {'perl': ['perl'], 'javascript': ['eslint', 'prettier'], 'python': ['flake8', 'pylint3', 'mypy']}
+"let g:ale_python_mypy_options = '--ignore-missing-imports'
+"let g:ale_fixers = {'python': ['autopep8', 'yapf', 'isort']}
+"let g:ale_fix_on_save = 1
+"let g:ale_sign_column_always = 1
+"let g:ale_javascript_eslint_use_global = 1
+"let g:ale_javascript_eslint_executable = 'eslint_d'
+"" let ale be usable (not too goddam slow)
+"let g:ale_echo_delay = 500
+"
+"let g:airline#extensions#ale#enabled = 1
+"let g:airline_theme='solarized'
+"
+""plugin config:
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#show_tab_nr = 1
+"let g:airline#extensions#tabline#tab_nr_type = 1
+"let g:airline#extensions#tabline#tab_nr_type = 1
+"let g:tmuxline_powerline_separators = 0
+"let g:tmuxline_preset = 'tmux'
+"let g:ackprg = 'ag --vimgrep'
+"
+""let g:EditorConfig_verbose = 1
+"let g:EditorConfig_max_line_indicator = "exceeding"
 
 nnoremap <Tab> :CtrlPBuffer<CR>
 
@@ -436,9 +436,9 @@ autocmd FileType perl setlocal iskeyword+=:
 set hidden
 
 set t_Co=256
-let g:solarized_termtrans = 1
-let g:solarized_contrast="high"
-colorscheme solarized
+"let g:solarized_termtrans = 1
+"let g:solarized_contrast="high"
+"colorscheme solarized
 
 "background is set in .vimrc.local
 
@@ -535,7 +535,7 @@ noremap <leader>v o<cr>:set paste<cr>:.!pbpaste<cr>:set nopaste<cr>
 "set shell=/bin/zsh
 "set shellcmdflag=
 
-source ~/.vimrc.local
+"source ~/.vimrc.local
 
 "should be temp
 set t_BE=
