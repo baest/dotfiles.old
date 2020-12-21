@@ -29,6 +29,10 @@ fdo() {
 fda() {
     fd "$@" | perl -l40pe0
 }
+
+safe_source() {
+    [[ -s "$1" ]] && source $1
+}
 #
 # Git supports aliases defined in .gitconfig, but you cannot override Git
 # builtins (e.g. "git log") by putting an executable "git-log" somewhere in the

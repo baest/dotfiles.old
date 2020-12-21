@@ -1,9 +1,9 @@
 #zmodload zsh/zprof
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
-
 for file in $HOME/.zsh/*.zsh; do
     source "$file"
 done
+
+safe_source "$HOME/.profile" # Load the default .profile
 
 #NOBEEP
 #[[ ! -f ~/.zkbd/$TERM ]] && zkbd
@@ -15,7 +15,7 @@ done
 # http://zdharma.org/zplugin/wiki/INTRODUCTION/
 # https://dev.to/misterf/awesome-terminal-upgrades-part-three-manage-zsh-plugins-using-zplugin-1fba
 source "${HOME}/.zgen/zgen.zsh"
-source /usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh
+safe_source "/usr/local/opt/git-extras/share/git-extras/git-extras-completion.zsh"
 
 if ! zgen saved; then
 	source "$HOME/.zgen_plugins.zsh"
@@ -62,9 +62,9 @@ export PATH=$HOME/bin/first:$ZPLUG_BIN:$HOME/.perl6/bin:$PATH
 #zprof
 
 # perlbrew
-[[ ! -f ~/perl5/perlbrew/etc/bashrc ]] || source ~/perl5/perlbrew/etc/bashrc
+safe_source "~/perl5/perlbrew/etc/bashrc"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+safe_source "~/.fzf.zsh"
 
 if [[ -x "$(command -v starship)" ]]; then
   eval "$(starship init zsh)"
