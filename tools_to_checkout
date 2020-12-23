@@ -5,4 +5,5 @@ Tool to handle dotfiles:
 Curl replacement:
     https://github.com/jakubroztocil/httpie
 
-
+Autocomplete
+    https://github.com/marlonrichert/zsh-autocomplete
