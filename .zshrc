@@ -62,16 +62,17 @@ export PATH=$HOME/bin/first:$ZPLUG_BIN:$HOME/.perl6/bin:$PATH
 #zprof
 
 # perlbrew
-safe_source "~/perl5/perlbrew/etc/bashrc"
+safe_source "$HOME/perl5/perlbrew/etc/bashrc"
 
-safe_source "~/.fzf.zsh"
+safe_source "$HOME/.fzf.zsh"
 
 if [[ -x "$(command -v starship)" ]]; then
   eval "$(starship init zsh)"
 fi
 
 if [[ ! -z "$ITERM_SESSION_ID" ]]; then
-    [[ ! -f ~/.zgen/.iterm2_shell_integration.zsh ]] || source ~/.zgen/.iterm2_shell_integration.zsh
+    safe_source "$HOME/.zgen/.iterm2_shell_integration.zsh"
+    #[[ ! -f ~/.zgen/.iterm2_shell_integration.zsh ]] || source ~/.zgen/.iterm2_shell_integration.zsh
 
     export PS1="$PS1%{$(iterm2_prompt_mark)%}"
 fi

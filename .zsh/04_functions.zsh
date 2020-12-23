@@ -31,7 +31,7 @@ fda() {
 }
 
 safe_source() {
-    [[ -s "$1" ]] && source $1
+    [[ -s "$1" ]] && source "$1"
 }
 #
 # Git supports aliases defined in .gitconfig, but you cannot override Git
