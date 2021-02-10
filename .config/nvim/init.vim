@@ -78,6 +78,7 @@ Plug 'cloudhead/neovim-fuzzy'
 Plug 'Raku/vim-raku'
 Plug 'yko/mojo.vim'
 Plug 'dpc/vim-smarttabs'
+Plug 'nathanalderson/yang.vim'
 call plug#end()
 
 set t_Co=256                        " force vim to use 256 colors
