@@ -31,7 +31,7 @@ charging_symbol = "⚡️"
 discharging_symbol = "💀"
 
 [[battery.display]]
-threshold = 20
+threshold = 30
 style = "bold red"
 
 [jobs]
