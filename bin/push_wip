@@ -1,4 +1,8 @@
 #/usr/bin/env bash
+# NOTE if this goes into endless push loop, put this in $REPO/.watchmanconfig
+#{
+#	"ignore_dirs": [".git"]
+#}
 #watchman -- trigger ~/tnid push_wip -- push_wip
 #watchman -- trigger ~/tnid/snap2 push_wip -- push_wip
 set -x
@@ -43,4 +47,5 @@ BRANCH=$3
 git wip save --untracked
 git push -f $HOST:$REPO $BRANCH
 SSH_CMD="cd $REPO && git checkout -f $BRANCH && git log -1 --stat"
+#sudo ./bin/mk --all-deployable upgrade-deps,deploy # add this to the above to auto deploy
 ssh $HOST "$SSH_CMD"
