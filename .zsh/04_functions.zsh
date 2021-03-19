@@ -21,7 +21,7 @@ no_hist() {
 	echo 'History is disabled'
 }
 
-mkcd() { mkdir ${@:1:$# - 1} "${@: -1}"; cd "${@: -1}" }
+mkcd() { mkdir -p ${@:1:$# - 1} "${@: -1}"; cd "${@: -1}" }
 
 fdo() {
     fd -0 "$@" | xargs -0 nvim -O2
