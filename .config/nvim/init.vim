@@ -79,6 +79,7 @@ Plug 'Raku/vim-raku'
 Plug 'yko/mojo.vim'
 Plug 'dpc/vim-smarttabs'
 Plug 'nathanalderson/yang.vim'
+Plug 'andymass/vim-matchup'
 call plug#end()
 
 set t_Co=256                        " force vim to use 256 colors
@@ -120,6 +121,9 @@ let g:rainbow_conf = { 'ctermfgs': ['DarkBlue', 'Magenta', 'Red', 'DarkGray', 'D
 
 "let g:EditorConfig_verbose = 1
 let g:EditorConfig_max_line_indicator = "exceeding"
+
+" disable offscreen match
+let g:matchup_matchparen_offscreen = {}
 
 "committia
 let g:committia_hooks = {}
