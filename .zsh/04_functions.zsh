@@ -72,9 +72,9 @@ gco() {
 }
 
 cfg_update() {
-    if [ `ls .ssh/config* | wc -l` > 0 ]; then
+    if [[ `find .ssh -name 'config*' | wc -l` > 0 ]]; then
         echo "This command will delete your ssh config files, bailing"
-        exit 1;
+        return 1;
     fi
     cfg fetch --all
     cfg reset --hard
