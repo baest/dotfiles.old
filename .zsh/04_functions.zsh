@@ -70,3 +70,14 @@ gco() {
         echo The current branch has stashed content!
     fi
 }
+
+cfg_update() {
+    if [ `ls .ssh/config* | wc -l` > 0 ]; then
+        echo "This command will delete your ssh config files, bailing"
+        exit 1;
+    fi
+    cfg fetch --all
+    cfg reset --hard
+    cfg rebase FETCH_HEAD
+    rm .ssh/config*
+}

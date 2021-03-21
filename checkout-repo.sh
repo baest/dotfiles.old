@@ -25,5 +25,8 @@ echo .ssh/config.mac >> .cfg/info/exclude
 echo .ssh/config.newer_ssh >> .cfg/info/exclude
 cfg update-index --assume-unchanged .ssh/config .ssh/config.mac .ssh/config.newer_ssh
 
+#run this with:
 #curl -Lks https://raw.githubusercontent.com/baest/dotfiles/master/checkout-repo.sh | zsh
-#cfg fetch --all; cfg reset --hard ; cfg rebase FETCH_HEAD; rm .ssh/config*
+
+#for updates:
+#cfg_update
