@@ -159,5 +159,5 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-autocmd FileType perl ab P use DDP; p
+autocmd FileType perl ab P use Data::Printer; Data::Printer::p
 autocmd FileType sql set expandtab
