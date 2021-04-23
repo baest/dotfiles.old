@@ -5,7 +5,9 @@ add_newline = false
 min_time = 1
 
 [character]
-use_symbol_for_status = true  # Show "✖" when the command faild
+#error_symbol = "[✗](bold red) "
+error_symbol = "[❯](bold red)"
+success_symbol = "[❯](green)"
 
 [hostname]
 format =  "❮$hostname❯ "
@@ -36,46 +38,35 @@ style = "bold red"
 
 [jobs]
 symbol = "✦ "
-threshold = 1
+threshold = 0
 
 [memory_usage]
-show_percentage = true
-show_swap = true
-threshold = 95
+threshold = 80
 style = "bold dimmed green"
 disabled = false
-format = "[${swap} ${swap_pct}]($style) "
+format = "$symbol [${ram}( | ${swap})]($style) "
 
 [git_branch]
 style = "bold yellow"
 
 [git_status]
 conflicted = "⚔️ "
-#ahead = "🏎️ 💨 "
-#behind = "🐢 "
 #diverged = "🔱 "
 #untracked = "🛤️ "
-untracked = "🤷‍"
-stashed = "📦 "
-modified = "📝 "
-modified_count.enabled = true
-#staged = "🗃️ "
-staged.value = "++"
-staged.style = "green"
-staged_count.enabled = true
-staged_count.style = "green"
-#renamed = "👅"
+untracked = "[$count](green)🤷"
+stashed = "[$count](bold red)📦 "
+modified = "[$count](red)📝 "
+staged = "[$count](blue)🗃️ "
 renamed = "📛 "
 deleted = "🗑"
 style = "black"
-show_sync_count = true
-#prefix = "with "
-#suffix = ""
+ahead = "⇡${count}"
+behind = "⇣${count}"
 
 [git_commit]
-commit_hash_length = 7
+#commit_hash_length = 7
 only_detached = false
-format = "[\\(commit $hash\\)]($style) "
+format = "[\\($hash\\)]($style) "
 
 [git_state]
 format = "[\\($state( $progress_current of $progress_total)\\)]($style) "
@@ -83,3 +74,6 @@ cherry_pick = "[🍒 PICKING](bold red)"
 
 [python]
 disabled = true
+
+[perl]
+format = "[$symbol($version )]($style)"
