@@ -15,6 +15,8 @@ cfg checkout
 cfg config status.showUntrackedFiles no
 
 git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install --bin
 mkdir .zsh_history
 mkdir .psql_history
 mkdir -p .vim/swap
