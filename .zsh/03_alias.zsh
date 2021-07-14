@@ -21,7 +21,7 @@ alias tigs="tig status"
 alias tigb="tig blame"
 
 # cfg
-alias cfg='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias cfg="git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
 # nvim
 alias nv=nvim
