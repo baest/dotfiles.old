@@ -79,5 +79,6 @@ cfg_update() {
     cfg fetch --all
     cfg reset --hard
     cfg rebase FETCH_HEAD
+	# TODO update fzf
     rm .ssh/config*
 }
