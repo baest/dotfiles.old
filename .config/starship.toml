@@ -23,8 +23,7 @@ truncate_to_repo = false
 
 [time]
 disabled = false
-style = "black"
-format = "🕙 %T"
+time_format = "%T"
 
 [battery]
 disabled = false
