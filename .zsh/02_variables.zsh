@@ -39,3 +39,7 @@ if [[ $HOSTNAME == 'baestmode' || $HOSTNAME == 'FVFC40J6L413' ]]; then
 else
     export EDITOR=vim
 fi
+
+if [[ -z "$REAL_GIT" ]]; then
+    export REAL_GIT=`which git`
+fi

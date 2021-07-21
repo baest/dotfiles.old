@@ -40,11 +40,6 @@ safe_source() {
 # a negated command (gf = grep --files-with-matches; gF = grep
 # --files-without-match). As a workaround, translate "X" to "-x".
 
-if [[ -z "$REAL_GIT" ]]; then
-    export REAL_GIT=`which git`
-
-    alias git=g
-fi
 g() {
     typeset -r git_alias="git-$1"
     if `which "$git_alias" >/dev/null 2>&1`; then
@@ -59,6 +54,7 @@ g() {
         "$REAL_GIT" "$@"
     fi
 }
+alias git=g
 compdef _git g=git
 compdef _git git=git
 
