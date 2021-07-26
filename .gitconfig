@@ -8,6 +8,7 @@
 	br = branch
 	co = checkout
     d = -c diff.noprefix=true diff --relative
+	dc = -c diff.noprefix=true diff --relative --cached 
 	dws = -c diff.noprefix=true diff --relative --ignore-all-space
     commitdiff = !git show --color --pretty=format:%b
 	stashed = stash list --stat --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
@@ -31,7 +32,7 @@
 [core]
 	#pager = delta
 	#pager = delta --plus-color="#012800" --minus-color="#340001" --syntax-theme='OneHalfLight'
-	pager = delta --syntax-theme='Solarized (light)'
+	#pager = delta --syntax-theme='Solarized (light)'
 	excludesfile = ~/.gitignore
     untrackedCache = true
 	commitGraph = true
@@ -40,6 +41,12 @@
     # use --no-pager diff to avoid
     #enable pager = diff-so-fancy | less --tabs=4 -RFX
     #pager = diff-so-fancy | less --tabs=4 --pattern '^(Date|added|deleted|modified): ' -RFX
+
+[pager]
+	diff = delta --syntax-theme='Solarized (light)'
+    log = delta --syntax-theme='Solarized (light)'
+    reflog = delta --syntax-theme='Solarized (light)'
+    show = delta --syntax-theme='Solarized (light)'
 
 [help]
     autocorrect = 30
@@ -69,9 +76,6 @@
     autoStash = true
 	abbreviateCommands = true
 
-[url "git+ssh://sal.nzcorp.net/z/sal/git/"]
-    insteadOf = sal:
-
 [url "git@git.dk.telia.net:automation"]
         insteadOf = teliaauto:
 
@@ -98,7 +102,10 @@
     relativePath = true
 
 [delta]
+	syntax-theme = 'Solarized (light)'
 	theme = 'Solarized (light)'
+	line-numbers = true
+	side-by-side = true
 #    plus-color = "#012800"
 #    minus-color = "#340001"
 
@@ -133,3 +140,6 @@
 
 [fetch]
 	writeCommitGraph = true
+
+[include]
+      path = ~/.gitconfig.local
