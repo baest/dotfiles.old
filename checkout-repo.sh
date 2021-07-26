@@ -13,6 +13,7 @@ else
 fi;
 cfg checkout
 cfg config status.showUntrackedFiles no
+touch ~/.gitconfig.local
 
 git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
