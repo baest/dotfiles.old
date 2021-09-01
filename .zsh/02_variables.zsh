@@ -43,3 +43,5 @@ fi
 if [[ -z "$REAL_GIT" ]]; then
     export REAL_GIT=`which git`
 fi
+
+unset TMOUT
