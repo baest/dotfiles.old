@@ -36,8 +36,6 @@ threshold = 30
 style = "bold red"
 
 [jobs]
-symbol = "✦ "
-threshold = 0
 
 [memory_usage]
 threshold = 80
