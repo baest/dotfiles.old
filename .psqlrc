@@ -1,3 +1,4 @@
+\set QUIET 1
 \pset null '(NULL)'
 --\pset pager off
 \pset pager on
@@ -5,6 +6,7 @@
 \pset border 3
 
 \setenv PAGER 'pspg -bX --no-mouse --no-bars'
+--\setenv PAGER 'less -XF'
 \timing
 \set VERBOSITY verbose
 
@@ -24,3 +26,7 @@
 --set search_path TO construct, public
 \set COMP_KEYWORD_CASE upper
 \set ON_ERROR_ROLLBACK interactive
+
+\unset QUIET
+
+-- \echo pspg is DISABLED for now
