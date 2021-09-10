@@ -43,43 +43,60 @@ noremap <leader>v o<cr>:set paste<cr>:.!pbpaste<cr>:set nopaste<cr>
 let g:plug_url_format = 'git@github.com:%s.git'
 
 call plug#begin()
+Plug 'junegunn/vim-plug' " for help text
+Plug 'farmergreg/vim-lastplace'
+"Plug 'overcache/NeoSolarized' " not in use
 "Plug 'altercation/vim-colors-solarized'
-"Plug 'overcache/NeoSolarized'
 Plug 'rhysd/committia.vim' " commit screen stuff
-Plug 'tpope/vim-eunuch'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'mbbill/undotree'
-Plug 'w0rp/ale'
-Plug 'godlygeek/tabular' " for tabularizing on =, do :Tabularize /=
-Plug 'sheerun/vim-polyglot'
-Plug 'chrisbra/SudoEdit.vim'
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'godlygeek/tabular', { 'on': 'Tabularize' } " for tabularizing on =, do :Tabularize /=
+Plug 'tpope/vim-eunuch', { 'on': [ 'SudoEdit', 'SudoWrite', 'Delete', 'Rename', 'Chmod' ] } " :SudoEdit, :SudoWrite, :Delete, :Rename, :Chmod 
+"Plug 'chrisbra/SudoEdit.vim'
 Plug 'sk1418/Join'
 Plug 'blueyed/vim-diminactive'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-fugitive'
-"Git installed
-"Plug '~/.fzf'
-"Homebrew
+Plug 'airblade/vim-matchquote' " make % jump between quotes
+Plug 'luochen1990/rainbow' " color parentheses in many colors
+
+"XXX is disabled to test performance, please test before just enabling stuff
+"Plug 'tpope/vim-sleuth' " auto detect tab/space indent
+"XXXPlug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"XXXPlug 'mbbill/undotree'
+"XXXPlug 'w0rp/ale'
+"XXXPlug 'sheerun/vim-polyglot'
+"XXXPlug 'ntpeters/vim-better-whitespace'
+"XXXPlug 'editorconfig/editorconfig-vim'
+"XXXPlug 'tpope/vim-fugitive'
+"XXXPlug 'terryma/vim-multiple-cursors'
+"XXXPlug 'cloudhead/neovim-fuzzy'
+"XXXPlug 'andymass/vim-matchup'
+
+""Git installed
+""Plug '~/.fzf'
+""Homebrew
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'farmergreg/vim-lastplace'
-Plug 'mogelbrod/vim-jsonpath'
-Plug 'rhysd/vim-gfm-syntax'
-"Plug 'mileszs/ack.vim' " disabled for now, since fzf.vim provides :Ag
-Plug 'luochen1990/rainbow'
+
+" filetype support
+Plug 'rhysd/vim-gfm-syntax', { 'for': ['markdown'] } " GitHub Flavored Markdown Syntax Extension for Vim
+Plug 'lifepillar/pgsql.vim', { 'for': ['sql'] }
+Plug 'Raku/vim-raku', { 'for': ['raku'] }
+Plug 'yko/mojo.vim', { 'for': ['html.epl'] }
+Plug 'nathanalderson/yang.vim', { 'for': ['yang'] }
+
+"neovim .5 stuff
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'nvim-treesitter/playground'
+
 "Plug 'christoomey/vim-tmux-navigator'
 "Plug 'tmux-plugins/vim-tmux'
-Plug 'lifepillar/pgsql.vim'
-Plug 'cloudhead/neovim-fuzzy'
-Plug 'Raku/vim-raku'
-Plug 'yko/mojo.vim'
-Plug 'dpc/vim-smarttabs'
-Plug 'nathanalderson/yang.vim'
-Plug 'andymass/vim-matchup'
+"Plug 'dpc/vim-smarttabs' " smarttabs causes problems for mojo.vim with o and the like
+"Plug 'mileszs/ack.vim' " disabled for now, since fzf.vim provides :Ag
+
+"vim airline cost 100ms+ to start
+"Plug 'bling/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+
+"vim jsonpath cost 200ms+ to start
+"Plug 'mogelbrod/vim-jsonpath'
 call plug#end()
 
 set t_Co=256                        " force vim to use 256 colors
@@ -159,5 +176,10 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-autocmd FileType perl ab P use Data::Printer; Data::Printer::p
+autocmd FileType perl,mason ab P use Data::Printer; Data::Printer::p
 autocmd FileType sql set expandtab
+
+" don't indent comments
+set indentkeys-=0#
+"autocmd BufNewFile,BufReadPost * if &filetype == "python" |  | endif
+"autocmd BufNewFile,BufReadPost * if &filetype == "yaml" | set expandtab shiftwidth=2 indentkeys-=0# | endif
