@@ -33,6 +33,15 @@ fda() {
 safe_source() {
     [[ -s "$1" ]] && source "$1"
 }
+
+pg() {
+	[[ -z "$PERLBREW_VERSION" ]] && perlbrew_init
+	~/bin/pg "$@"
+}
+
+perlbrew_init() {
+	safe_source "$HOME/perl5/perlbrew/etc/bashrc"
+}
 #
 # Git supports aliases defined in .gitconfig, but you cannot override Git
 # builtins (e.g. "git log") by putting an executable "git-log" somewhere in the
