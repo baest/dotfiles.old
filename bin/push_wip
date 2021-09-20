@@ -49,3 +49,4 @@ git push -f $HOST:$REPO $BRANCH
 SSH_CMD="cd $REPO && git checkout -f $BRANCH && git log -1 --stat"
 #sudo ./bin/mk --all-deployable upgrade-deps,deploy # add this to the above to auto deploy
 ssh $HOST "$SSH_CMD"
+terminal-notifier -message "pushed $REPO to $HOST"
