@@ -9,3 +9,6 @@ export ENHANCD_DISABLE_DOT=1
 export ENHANCD_DISABLE_HYPHEN=1
 export ENHANCD_DISABLE_HOME=1
 export ENHANCD_DIR=$HOME/.enhancd
+
+zstyle ':autocomplete:*' fzf-completion yes
+zstyle ':autocomplete:*' min-input 2
