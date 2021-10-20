@@ -40,6 +40,9 @@ map <leader>pb :call Copy()
 vnoremap <leader>pb :!xclip -selection c<cr>u
 noremap <leader>v o<cr>:set paste<cr>:.!pbpaste<cr>:set nopaste<cr>
 
+" remove default weird nvimm mapping 
+unmap Y
+
 let g:plug_url_format = 'git@github.com:%s.git'
 
 call plug#begin()
