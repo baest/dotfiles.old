@@ -28,3 +28,4 @@ alias nv=nvim
 alias nvs='nvim -On'
 alias nv2='nvim -O2'
 alias damnit='nvim $(git grep -l "<<<< HEAD")'
+alias pbi=perlbrew_init
