@@ -87,3 +87,15 @@ cfg_update() {
 	# TODO update fzf
     rm .ssh/config*
 }
+
+nvl() {
+	dir="/Users/nvk1598/.nvim"
+	command_ex=""
+	if [[ ! -z "$1" ]]; then
+		command_ex="-q $1"
+	fi
+
+	file=`ls $dir | fzf -1 $command_ex`
+
+	nvim -S $dir/$file
+}
