@@ -97,5 +97,7 @@ nvl() {
 
 	file=`ls $dir | fzf -1 $command_ex`
 
-	nvim -S $dir/$file
+	if [[ ! -z "$file" ]]; then
+		nvim -S $dir/$file
+	fi
 }
