@@ -58,6 +58,7 @@ Plug 'sk1418/Join'
 Plug 'blueyed/vim-diminactive'
 Plug 'airblade/vim-matchquote' " make % jump between quotes
 Plug 'luochen1990/rainbow' " color parentheses in many colors
+Plug 'chrisbra/csv.vim'
 
 "XXX is disabled to test performance, please test before just enabling stuff
 "Plug 'tpope/vim-sleuth' " auto detect tab/space indent
