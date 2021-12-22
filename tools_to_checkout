@@ -7,3 +7,9 @@ Curl replacement:
 
 Autocomplete
     https://github.com/marlonrichert/zsh-autocomplete
+
+cli tool to make json output of tools
+	https://github.com/kellyjonbrazil/jc
+
+console for tmux
+	https://github.com/bduggan/tmeta
