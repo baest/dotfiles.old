@@ -101,3 +101,7 @@ nvl() {
 		nvim -S $dir/$file
 	fi
 }
+ot() {
+	pbi
+	=ot "$@"
+}
