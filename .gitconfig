@@ -28,14 +28,18 @@
     ignore = update-index --assume-unchanged
     unignore = update-index --no-assume-unchanged
     ignored = !git ls-files -v | grep "^[[:lower:]]"
+	main-branch = !git rev-parse --abbrev-ref origin/HEAD | perl -pE 's!.*?/!!'
+	cnt-commits = !git rev-list --count `git current-branch`...`git main-branch`
 
 [core]
     #pager = delta
-    #pager = delta --plus-color="#012800" --minus-color="#340001" --syntax-theme='OneHalfLight'
+    #pager = delta --syntax-theme='OneHalfLight'
     #pager = delta --syntax-theme='Solarized (light)'
     excludesfile = ~/.gitignore
     untrackedCache = true
     commitGraph = true
+	preloadindex = true
+	fscache = true
     #editor = /usr/bin/vim
     #editor = giteditor.pl
     # use --no-pager diff to avoid
@@ -103,11 +107,8 @@
 
 [delta]
     syntax-theme = 'Solarized (light)'
-    theme = 'Solarized (light)'
     line-numbers = true
     side-by-side = true
-    #plus-color = "#012800"
-    #minus-color = "#340001"
 
 [interactive]
     diffFilter = delta --color-only
