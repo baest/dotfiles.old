@@ -12,11 +12,11 @@ local function focus_other_screen(name) -- focuses the other screen
 
    local rect = nextScreen:fullFrame()
    local center = hs.geometry.rectMidPoint(rect)
-   hs.mouse.setAbsolutePosition(center)
+   hs.mouse.absolutePosition(center)
 end
 
 function get_window_under_mouse() -- from https://gist.github.com/kizzx2/e542fa74b80b7563045a
-   local my_pos = hs.geometry.new(hs.mouse.getAbsolutePosition())
+   local my_pos = hs.geometry.new(hs.mouse.absolutePosition())
    local my_screen = hs.mouse.getCurrentScreen()
    return hs.fnutils.find(hs.window.orderedWindows(), function(w)
                  return my_screen == w:screen() and my_pos:inside(w:frame())
@@ -43,15 +43,15 @@ function dump(o)
    end
 end
 
-hs.hotkey.bind({"ctrl"}, "pad0", function() -- does the keybinding
-      activate_other_screen('Color LCD')
-end)
-hs.hotkey.bind({"ctrl"}, "pad1", function() -- does the keybinding
-      activate_other_screen('S27D850')
-end)
-hs.hotkey.bind({"ctrl"}, "pad2", function() -- does the keybinding
-      activate_other_screen('S27H85x')
-end)
+--hs.hotkey.bind({"ctrl"}, "pad0", function() -- does the keybinding
+--      activate_other_screen('Color LCD')
+--end)
+--hs.hotkey.bind({"ctrl"}, "pad1", function() -- does the keybinding
+--      activate_other_screen('S27D850')
+--end)
+--hs.hotkey.bind({"ctrl"}, "pad2", function() -- does the keybinding
+--      activate_other_screen('S27H85x')
+--end)
 hs.hotkey.bind({"alt","command"}, "left", function() -- does the keybinding
       activate_other_screen('next')
 end)
