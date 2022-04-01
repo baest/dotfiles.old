@@ -1,13 +1,13 @@
 alias ls="ls -F"
 #alias ll="ls -alh"
 
-if [[ -z "$(which exa 2> /dev/null)" ]]; then
+if `which exa &> /dev/null`; then 
 	alias ll="ls -alh"
 	alias tree="tree -a"
 else
-	alias ll="exa -laag --git"
+	alias ll="exa -laagH --git"
 	#alias ll="exa -laag --git --grid"
-	alias tree="exa --tree -laag --git"
+	alias tree="exa --tree -laagH --git"
 fi
 
 alias cls="echo -ne '\033c'"
