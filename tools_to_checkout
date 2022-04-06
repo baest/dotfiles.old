@@ -13,3 +13,12 @@ cli tool to make json output of tools
 
 console for tmux
 	https://github.com/bduggan/tmeta
+
+ls (exa) replacement
+	https://github.com/Peltoche/lsd
+
+json viewer
+	https://jless.io/user-guide.html
+
+macos vim keyboard stuff
+	https://github.com/godbout/kindaVim.theapp
