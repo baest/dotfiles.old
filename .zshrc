@@ -1,5 +1,5 @@
 #zmodload zsh/zprof
-for file in $HOME/.zsh/*.zsh; do
+for file in $HOME/.zshrc.d/*.zsh; do
     source "$file"
 done
 
