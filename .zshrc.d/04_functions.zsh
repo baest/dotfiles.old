@@ -49,23 +49,23 @@ perlbrew_init() {
 # a negated command (gf = grep --files-with-matches; gF = grep
 # --files-without-match). As a workaround, translate "X" to "-x".
 
-g() {
-    typeset -r git_alias="git-$1"
-    if `which "$git_alias" >/dev/null 2>&1`; then
-        shift
-        "$git_alias" "$@"
-    elif [[ "$1" =~ [A-Z] ]]; then
-        # Translate "X" to "-x" to enable aliases with uppercase letters. 
-        translated_alias=$(echo "$1" | sed -e 's/[A-Z]/-\l\0/g')
-        shift
-        "$REAL_GIT" "$translated_alias" "$@"
-    else
-        "$REAL_GIT" "$@"
-    fi
-}
-alias git=g
-compdef _git g=git
-compdef _git git=git
+#g() {
+#    typeset -r git_alias="git-$1"
+#    if `which "$git_alias" >/dev/null 2>&1`; then
+#        shift
+#        "$git_alias" "$@"
+#    elif [[ "$1" =~ [A-Z] ]]; then
+#        # Translate "X" to "-x" to enable aliases with uppercase letters. 
+#        translated_alias=$(echo "$1" | sed -e 's/[A-Z]/-\l\0/g')
+#        shift
+#        "$REAL_GIT" "$translated_alias" "$@"
+#    else
+#        "$REAL_GIT" "$@"
+#    fi
+#}
+#alias git=g
+#compdef _git g=git
+#compdef _git git=git
 
 gco() {
     git checkout $@
@@ -89,7 +89,7 @@ cfg_update() {
 }
 
 nvl() {
-	dir="/Users/nvk1598/.nvim"
+	dir="/Users/martinfrausing/.nvim/sessions"
 	command_ex=""
 	if [[ ! -z "$1" ]]; then
 		command_ex="-q $1"
@@ -98,10 +98,24 @@ nvl() {
 	file=`ls $dir | fzf -1 $command_ex`
 
 	if [[ ! -z "$file" ]]; then
-		nvim -S $dir/$file
+		nvim -c "SessionsLoad $dir/$file"
+		#nvim -S $dir/$file
 	fi
 }
 ot() {
 	pbi
 	=ot "$@"
+}
+
+cnodesfzf() {
+  local selected_host=$({~/src/chef/repo/scripts/cnodes & awk '{print $1}' ~/.ssh/known_hosts; }|sort|uniq|fzf +m --query "$LBUFFER" --prompt="SSH remote > ")
+  if [ -n "$selected_host" ]; then
+    if [ ! -z "$TMUX" ]; then
+      WINDOWNAME=$(echo ${selected_host}|cut -d . -f1)
+      tmux rename-window -t work "${WINDOWNAME}"
+    fi
+    BUFFER="ssh ${selected_host}"
+    zle accept-line
+    zle reset-prompt
+  fi
 }

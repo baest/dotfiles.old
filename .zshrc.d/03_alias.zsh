@@ -2,12 +2,12 @@ alias ls="ls -F"
 #alias ll="ls -alh"
 
 if `which exa &> /dev/null`; then 
-	alias ll="ls -alh"
-	alias tree="tree -a"
-else
 	alias ll="exa -laagH --git"
 	#alias ll="exa -laag --git --grid"
 	alias tree="exa --tree -laagH --git"
+else
+	alias ll="ls -alh"
+	alias tree="tree -a"
 fi
 
 alias cls="echo -ne '\033c'"
@@ -39,3 +39,9 @@ else
 	alias damnit='nvim $(git grep -l "<<<< HEAD")'
 fi
 alias pbi=perlbrew_init
+eval $(thefuck --alias)
+
+alias bc="figlet 'use fend' && fend"
+
+alias unhex="xxd -r -p"
+alias hex="xxd -p -c0 -u"

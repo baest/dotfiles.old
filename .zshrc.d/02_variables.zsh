@@ -6,14 +6,13 @@ HISTFILE=~/.zsh_history/$HOSTNAME
 export BLOCKSIZE=K;
 export EDITOR=nvim;
 export PAGER=less;
+export LESS='-RQ'
 
 export PS1="%*:%n@%m:%~%{${fg[red]}%}%B%(?..(%?%))%b%#";
 
 # Customize to your needs...
-export PATH=/sbin:/usr/local/bin:/bin:/usr/sbin:/usr/bin:/opt/src:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/install_src/git-fuzzy/bin
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/opt/gnu-sed/libexec/gnubin:/opt/homebrew/opt/make/libexec/gnubin:/sbin:/usr/local/bin:/bin:/usr/sbin:/usr/bin:/opt/src:$HOME/bin:/usr/local/sbin:/usr/local/bin:$HOME/.startups:$HOME/.local/bin:$HOME/.cargo/bin:$HOME/install_src/git-fuzzy/bin:/opt/homebrew/Cellar/perl/5.34.0/bin
 
-#export http_proxy="http://proxy.telia.se:808"
-#export https_proxy="http://proxy.telia.se:808"
 export SSH_REAL_HOST=`hostname`
 
 export LANG=en_GB.UTF-8
@@ -23,9 +22,8 @@ export LC_MESSAGES=en_GB.UTF-8
 export LC_CTYPE=en_GB.UTF-8
 export LC_ALL=en_GB.UTF-8
 
-export EMAIL=martin.z.frausing@teliacompany.com
+export EMAIL=fra@one.com
 export NAME="Martin Frausing"
-export ANSIBLE_CONFIG=~/ansible/./ansible_nvk1598.cfg
 
 export DISABLE_AUTO_TITLE=true
 
